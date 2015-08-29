@@ -10,36 +10,6 @@
 	<form name="signinForm" novalidate="" ng-submit="signIn(signinForm)">
 		<div class="row">
 			<div class="col">
-				<label class="item item-input"
-					ng-class="{ 'has-error' : signinForm.loginID.$invalid}"> <input
-					type="text" name="loginID" ng-minlength="5" ng-maxlength="10"
-					required ng-model="data.loginID" placeholder="Login ID" />
-				</label>
-				<div class="form-errors" ng-messages="signinForm.loginID.$error">
-					<div class="form-error" ng-message="required">Please enter
-						Login ID to proceed</div>
-					<div ng-messages-include="app/templates/errors.htm"></div>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col">
-				<label class="item item-input"
-					ng-class="{ 'has-error-lr' : signinForm.password.$invalid  && signinForm.$submitted, 'valid-lr' : signinForm.password.$valid  && signinForm.$submitted}">
-					<input type="password" ng-model="data.password" name="password"
-					ng-minlength="5" ng-maxlength="25" required placeholder="Password" />
-				</label>
-				<div class="form-errors"
-					ng-show="signinForm.password.$error && signinForm.$submitted"
-					ng-messages="signinForm.password.$error">
-					<div class="form-error" ng-message="required">Please enter
-						password to proceed</div>
-					<div ng-messages-include="app/templates/errors.htm"></div>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col">
 				<button class="button button-block button-positive">Login</button>
 			</div>
 		</div>

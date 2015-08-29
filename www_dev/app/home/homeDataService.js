@@ -9,31 +9,28 @@
  *
  */
 
-angular.module('homeApp').service('HomeDataService', [
-        'ResponseStatusDataService', function(ResponseStatusDataService) {
+angular.module('homeApp').service('HomeDataService',
+		[ 'ResponseStatusDataService', function(ResponseStatusDataService) {
 
-	        // private variables
-	        var entryList = {};
-	        
-	        var status = new ResponseStatusDataService();
-	        
-	        this.getEntryList = function() {
+			// private variables
+			var emailId = '';
 
-		        return entryList;
-	        };
-	        
-	        this.setEntryList = function(list) {
+			var status = new ResponseStatusDataService();
 
-		        entryList = list;
-	        };
-	        
-	        this.setStatus = function(stat) {
+			this.setEmailID = function(emailId) {
+				this.emailId = emailId;
+			};
 
-		        status.setStatus(stat);
-	        };
-	        
-	        this.getStatus = function(){
-	        	return status;
-	        }
-        }
-]);
+			this.getEmailID = function() {
+				return this.emailId;
+			};
+
+			this.setStatus = function(stat) {
+
+				status.setStatus(stat);
+			};
+
+			this.getStatus = function() {
+				return status;
+			};
+		} ]);

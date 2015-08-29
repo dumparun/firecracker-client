@@ -8,20 +8,61 @@
  *   http://en.wikipedia.org/wiki/Beerware
  *
  */
-angular.module('homeApp').service('CommonDataService', [
-        'ResponseStatusDataService', function(ResponseStatusDataService) {
+angular.module('comms')
+.factory('CommsDataService', function() {
 
-	        // private variables
-	        var status = new ResponseStatusDataService();
-	        
-	        this.setStatus = function(stat) {
+	return function() {
 
-		        status.setStatus(stat);
-	        };
-	        
-	        this.getStatus = function() {
+		this.defaultCommsConfig = {
+		    loadingTemplate : "Loading ...",
+		    baseURL : "http://www.dumparun.info/dev/mture/index.php/",
+		    urlPath : "",
+		    method : "POST",
+		    postData: {},
+		    contentType : "application/json",
+		};
+		
+		this.config = function() {
 
-		        return status;
-	        }
-        }
-]);
+			return this.defaultCommsConfig;
+		};
+		
+		this.setBaseURL = function(baseURL){
+			this.defaultCommsConfig.baseURL = baseURL;
+		};
+		
+		this.setMethod = function(method){
+			this.defaultCommsConfig.method = method;
+		};
+		
+		this.setURLPath = function(urlPath) {
+
+			this.defaultCommsConfig.urlPath = urlPath;
+		};
+		
+		this.getURLPath = function() {
+
+			return this.defaultCommsConfig.urlPath;
+		};
+		
+		this.setLoadingTemplate = function(loadingTemplate) {
+
+			this.defaultCommsConfig.loadingTemplate = loadingTemplate;
+		};
+		
+		this.getLoadingTemplate = function() {
+
+			return this.defaultCommsConfig.loadingTemplate;
+		};
+		
+		this.setPostData = function(postData) {
+
+			this.defaultCommsConfig.postData = postData;
+		};
+		
+		this.getPostData = function() {
+
+			return this.defaultCommsConfig.postData;
+		};
+	};
+});

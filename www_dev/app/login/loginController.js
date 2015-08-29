@@ -19,8 +19,10 @@ angular.module('loginApp')
                 '$state',
                 'LoginService',
                 'HomeDataService',
-                function($scope, $rootScope, $state, LoginService, HomeDataService) {
+                '$cordovaOauth',
+                function($scope, $rootScope, $state, LoginService, HomeDataService, $cordovaOauth) {
 
+                	var clientID = '615268675096-bh5f0cn7tbeaq75lke9b1o110gf5q616.apps.googleusercontent.com';
 	                $scope.data = {};
 	                
 	                if (HomeDataService.getStatus().getStatusCode() != 0) {
@@ -30,14 +32,12 @@ angular.module('loginApp')
 		                HomeDataService.getStatus().setStatusCode(0);
 	                }
 	                
-	                $scope.signIn = function(form) {
-
-		                console.log('Signing In');
-		                if (form.$invalid) {
-			                return;
-		                }
-		                
-		                LoginService.login($scope.data.loginID, $scope.data.password).then(
+	                $scope.signIn = function() {
+	                
+	                console.log("signing in");
+	                $cordovaOauth.google(clientID, ["https://www.googleapis.com/auth/userinfo.email", "https://www.googleapis.com/auth/userinfo.email"]).then(function(result) {
+	                    console.log(JSON.stringify(result));
+	                    LoginService.login(result.access_token).then(
 		                        function() {
 
 			                        if (HomeDataService.getStatus().getStatusCode() == 0) {
@@ -49,6 +49,13 @@ angular.module('loginApp')
 				                        });
 			                        }
 		                        });
-	                };
+	                    
+	                    console.log("Yes, logged in");
+	                }, function(error) {
+	                	console.log("Error while logging in");
+	                    console.log(error);
+	                });
+	                
+                }
                 }
         ]);

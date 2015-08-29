@@ -18,25 +18,19 @@ angular.module('loginApp')
                 function( CommsService, CommsDataService, HomeDataService) {
 
 	                return {
-		                login : function(loginID, password) {
+		                login : function(accessToken) {
 
-			                var postData = {
-			                    "loginID" : loginID,
-			                    "password" : password
-			                };
-			                
 			                commsData = new CommsDataService;
 			                commsData.setLoadingTemplate("Logging In ...");
-			                commsData.setURLPath("V1/Mture/login");
-			                commsData.setPostData(postData);
+			                commsData.setBaseURL("");
+			                commsData.setMethod("GET");
+			                commsData.setURLPath("https://www.googleapis.com/oauth2/v1/tokeninfo?access_token="+accessToken);
 			                return new CommsService.communicate(commsData).then(function(response) {
 
-				                HomeDataService.setStatus(response.data.status);
-				                HomeDataService.getStatus().setStatusMessage("You have successfully Logged in !!!");
-				                if (response.data.status.code == 0) {
-					                console.log(response.data.entriesList);
-					                HomeDataService.setEntryList(response.data.entriesList);
-				                }
+			                	console.log(response.data);
+			                	HomeDataService.getStatus().setStatusCode(0);
+			                	HomeDataService.getStatus().setStatusMessage("Welcome "+ response.data.email);
+			                	HomeDataService.setEmailID(response.data.email); 
 			                })
 			                .catch(function(response) {
 			                	console.error(response);

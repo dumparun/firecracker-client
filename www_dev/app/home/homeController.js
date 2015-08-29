@@ -24,5 +24,4 @@ angular.module('homeApp')
 						$scope.alert.message = HomeDataService.getStatus()
 								.getStatusMessage();
 					}
-					$scope.entriesList = HomeDataService.getEntryList();
 				} ])

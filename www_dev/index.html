@@ -6,8 +6,7 @@
 	content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
 <!-- Allow XHRs via https only -->
 <meta http-equiv="Content-Security-Policy"
-	content="default-src 'self' http:; img-src 'self' data:;">
-
+	content="script-src 'self' 'unsafe-eval'; object-src 'self' http:; img-src 'self' data:;">
 <title></title>
 
 <link href="lib/ionic/css/ionic.css" rel="stylesheet">
@@ -52,7 +51,7 @@
 </head>
 
 <body ng-app="mtureApp" ng-strict-di
-	class="platform-cordova platform-webview">
+	class="platform-cordova platform-webview" ng-csp="no-inline-style;no-unsafe-eval">
 	<ion-nav-view>
 	</ion-nav-view>
 </body>
