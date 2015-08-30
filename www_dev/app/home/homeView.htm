@@ -1,112 +1,101 @@
-<ion-view view-title="Entries"> <ion-nav-bar
-	class="bar-positive"> <ion-nav-back-button
+<ion-view view-title="Expense"> <ion-nav-bar
+	class="bar-balanced"> <ion-nav-back-button
 	class="button-clear"> <i class="ion-arrow-left-c"></i>
 Back </ion-nav-back-button> </ion-nav-bar> <ion-content has-bouncing="false"> <mt-alert>
 </mt-alert>
 <form name="expenseSubmitForm" novalidate=""
 	ng-submit="submitExpense(expenseSubmitForm)">
 
-	<div class="row">
-		<div class="col-md-6">
-			<p class="input-group">
-				<input type="text" class="form-control" required name="date"
-					ng-model="data.date" datepicker-popup="{{format}}"
-					is-open="status.opened" min-date="minDate" max-date="'2020-06-22'"
-					datepicker-options="dateOptions" close-text="Close" /> <span
-					class="input-group-btn"
-					ng-class="{ 'has-error' : expenseSubmitForm.date.$invalid}">
-					<button type="button" class="btn btn-default"
-						ng-click="open($event)">
-						<i class="glyphicon glyphicon-calendar"></i>
-					</button>
-				</span>
-			<div class="form-errors" ng-messages="expenseSubmitForm.date.$error">
-				<div class="form-error" ng-message="required">Please select a
-					date</div>
-				<div ng-messages-include="app/templates/errors.htm"></div>
-			</div>
-			</p>
+	<div class="col-md-6">
+		<p class="input-group">
+			<input type="text" class="form-control" required name="date"
+				ng-model="data.date" datepicker-popup="{{format}}"
+				is-open="status.opened" min-date="minDate" max-date="'2020-06-22'"
+				datepicker-options="dateOptions" close-text="Close" /> <span
+				class="input-group-btn"
+				ng-class="{ 'has-error' : expenseSubmitForm.date.$invalid}">
+				<button type="button" class="btn btn-default"
+					ng-click="open($event)">
+					<i class="glyphicon glyphicon-calendar"></i>
+				</button>
+			</span>
+		<div class="form-errors" ng-messages="expenseSubmitForm.date.$error">
+			<div class="form-error" ng-message="required">Please select a
+				date</div>
+			<div ng-messages-include="app/templates/errors.htm"></div>
+		</div>
+		</p>
+	</div>
+
+	<div class="col">
+		<label class="item item-input"
+			ng-class="{ 'has-error' : expenseSubmitForm.description.$invalid && expenseSubmitForm.$submitted, }">
+			<input type="text" name="description" ng-minlength="5"
+			ng-maxlength="100" required ng-model="data.description"
+			placeholder="Description" />
+		</label>
+		<div class="form-errors"
+			ng-show="expenseSubmitForm.description.$error && expenseSubmitForm.$submitted"
+			ng-messages="expenseSubmitForm.description.$error">
+			<div class="form-error" ng-message="required">Description is
+				required to proceed</div>
+			<div ng-messages-include="app/templates/errors.htm"></div>
 		</div>
 	</div>
 
-	<div class="row">
-		<div class="col">
-			<label class="item item-input"
-				ng-class="{ 'has-error' : expenseSubmitForm.description.$invalid && expenseSubmitForm.$submitted, }">
-				<input type="text" name="description" ng-minlength="5"
-				ng-maxlength="100" required ng-model="data.description"
-				placeholder="Description" />
-			</label>
-			<div class="form-errors"
-				ng-show="expenseSubmitForm.description.$error && expenseSubmitForm.$submitted"
-				ng-messages="expenseSubmitForm.description.$error">
-				<div class="form-error" ng-message="required">Description is
-					required to proceed</div>
-				<div ng-messages-include="app/templates/errors.htm"></div>
-			</div>
+	<div class="col">
+		<ui-select name="category" ng-model="data.category" required
+			title="Choose a category"> <ui-select-match
+			placeholder="Select Category...">{{$select.selected}}</ui-select-match>
+		<ui-select-choices
+			repeat="category in categories | filter: $select.search">
+		<div ng-bind-html="category | highlight: $select.search"></div>
+		</ui-select-choices> </ui-select>
+		<div class="form-errors"
+			ng-show="expenseSubmitForm.category.$error && expenseSubmitForm.$submitted"
+			ng-messages="expenseSubmitForm.category.$error">
+			<div class="form-error" ng-message="required">Choose a Category</div>
+			<div ng-messages-include="app/templates/errors.htm"></div>
 		</div>
 	</div>
 
-	<div class="row">
-		<div class="col">
-			<ui-select name="category" ng-model="data.category" required
-				title="Choose a category"> <ui-select-match
-				placeholder="Select Category...">{{$select.selected}}</ui-select-match>
-			<ui-select-choices
-				repeat="category in categories | filter: $select.search">
-			<div ng-bind-html="category | highlight: $select.search"></div>
-			</ui-select-choices> </ui-select>
-			<div class="form-errors"
-				ng-show="expenseSubmitForm.category.$error && expenseSubmitForm.$submitted"
-				ng-messages="expenseSubmitForm.category.$error">
-				<div class="form-error" ng-message="required">Choose a
-					Category</div>
-				<div ng-messages-include="app/templates/errors.htm"></div>
-			</div>
+	<div class="col">
+		<ui-select name="paymentType" ng-model="data.paymentType" required
+			title="Choose Payment Type"> <ui-select-match
+			placeholder="Select Payment Type...">{{$select.selected}}</ui-select-match>
+		<ui-select-choices
+			repeat="type in paymentType | filter: $select.search">
+		<div ng-bind-html="type | highlight: $select.search"></div>
+		</ui-select-choices> </ui-select>
+		<div class="form-errors"
+			ng-show="expenseSubmitForm.paymentType.$error && expenseSubmitForm.$submitted"
+			ng-messages="expenseSubmitForm.paymentType.$error">
+			<div class="form-error" ng-message="required">Choose a Payment
+				Type</div>
+			<div ng-messages-include="app/templates/errors.htm"></div>
 		</div>
 	</div>
 
-	<div class="row">
-		<div class="col">
-			<ui-select name="paymentType" ng-model="data.paymentType" required
-				title="Choose Payment Type"> <ui-select-match
-				placeholder="Select Payment Type...">{{$select.selected}}</ui-select-match>
-			<ui-select-choices
-				repeat="type in paymentType | filter: $select.search">
-			<div ng-bind-html="type | highlight: $select.search"></div>
-			</ui-select-choices> </ui-select>
-			<div class="form-errors"
-				ng-show="expenseSubmitForm.paymentType.$error && expenseSubmitForm.$submitted"
-				ng-messages="expenseSubmitForm.paymentType.$error">
-				<div class="form-error" ng-message="required">Choose a
-					Payment Type</div>
-				<div ng-messages-include="app/templates/errors.htm"></div>
-			</div>
+	<div class="col">
+		<label class="item item-input"
+			ng-class="{ 'has-error' : expenseSubmitForm.amount.$invalid && expenseSubmitForm.$submitted, }">
+			<input type="number" name="amount" ng-minlength="1" ng-maxlength="10"
+			required ng-model="data.amount" placeholder="Amount"
+			ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" />
+		</label>
+		<div class="form-errors"
+			ng-show="expenseSubmitForm.amount.$error && expenseSubmitForm.$submitted"
+			ng-messages="expenseSubmitForm.amount.$error">
+			<div class="form-error" ng-message="required">Please enter
+				Amount</div>
+			<div class="form-error" ng-message="pattern">Only numbers and
+				two Decimal Digit</div>
+			<div ng-messages-include="app/templates/errors.htm"></div>
 		</div>
 	</div>
 
-	<div class="row">
-		<div class="col">
-			<label class="item item-input"
-				ng-class="{ 'has-error' : expenseSubmitForm.amount.$invalid && expenseSubmitForm.$submitted, }">
-				<input type="number" name="amount" ng-minlength="1"
-				ng-maxlength="10" required ng-model="data.amount"
-				placeholder="Amount" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01"/>
-			</label>
-			<div class="form-errors"
-				ng-show="expenseSubmitForm.amount.$error && expenseSubmitForm.$submitted"
-				ng-messages="expenseSubmitForm.amount.$error" >
-				<div class="form-error" ng-message="required">Please enter Amount</div>
-				<div class="form-error" ng-message="pattern">Only numbers and two Decimal Digit</div>
-				<div ng-messages-include="app/templates/errors.htm"></div>
-			</div>
-		</div>
-	</div>
-
-	<div class="row">
-		<div class="col">
-			<button class="button button-block button-positive">Submit</button>
-		</div>
+	<div class="col">
+		<button class="button button-block button-positive">Submit</button>
 	</div>
 </form>
 </ion-content> </ion-view>

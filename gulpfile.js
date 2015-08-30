@@ -27,22 +27,36 @@ var paths = {
 };
 
 var libsPath = {
-	ionicCSS : 'lib/ionic/css/ionic.css',
-	ionicBundle : 'lib/ionic/js/ionic.bundle.js',
-	angularResouce : 'lib/ionic/js/angular/angular-resource.min.js',
-	angularMessage : 'lib/ionic/js/angular/angular-messages.min.js',
+	ionicCSS : 'lib/ionic/css/**',
+	ionicBundle : 'lib/ionic/js/**',
+	ionicFonts : 'lib/ionic/fonts/**',
 	ngCordova : 'lib/ngCordova/ng-cordova.min.js',
 	angularTranslate : 'lib/angulartranslate/angular-translate.min.js',
 	angularTranslateStatic : 'lib/angulartranslate/angular-translate-loader-static-files.min.js',
+	bootstrap : 'lib/bootstrap/ui-bootstrap-tpls-0.13.3.min.js',
+	uiselect : 'lib/uiselect/**'
 }
 
 gulp.task('default', [ 'sass' ]);
+
+gulp.task('buildIOS', function() {
+
+	runSequence('clean', 'copyLibs', 'uglify', 'copyAllFiles',
+			'cordovaIOS');
+});
 
 gulp.task('buildandroid', function() {
 
 	runSequence('clean', 'copyLibs', 'uglify', 'copyAllFiles',
 			'cordovaAndroid', 'deleteReleaseFolder',
 			'copyReleaseBuildToReleaseFolder');
+});
+
+gulp.task('fullbuildIOS', function() {
+
+	runSequence('clean', 'copyLibs', 'uglify', 'copyAllFiles',
+			'cordovaRemovePlugins', 'cordovaRemoveIOS',
+			'cordovaAddIOS', 'cordovaIOS');
 });
 
 gulp.task('fullbuildandroid', function() {
@@ -56,12 +70,20 @@ gulp.task('fullbuildandroid', function() {
 gulp.task('cordovaRemovePlugins', shell
 		.task([ 'node hooks/after_prepare/010_install_plugins.js remove' ]));
 
+
+gulp.task('cordovaRemoveIOS', shell
+		.task([ 'cordova platform remove ios' ]));
+
+gulp.task('cordovaAddIOS', shell.task([ 'ionic platform add ios' ]));
+
 gulp.task('cordovaRemoveAndroid', shell
 		.task([ 'cordova platform remove android' ]));
 
 gulp.task('cordovaAddAndroid', shell.task([ 'ionic platform add android' ]));
 
 gulp.task('cordovaAndroid', shell.task([ 'cordova build android --release' ]));
+
+gulp.task('cordovaIOS', shell.task([ 'cordova build ios --release' ]));
 
 gulp.task('copyReleaseBuildToReleaseFolder', function() {
 
