@@ -15,16 +15,20 @@ angular.module('homeApp')
 		'HomeController',
 		[
 				'$scope',
+				'$state',
 				'HomeDataService',
-				function($scope, HomeDataService) {
+				'ExpenseService',
+				function($scope, $state, HomeDataService, ExpenseService) {
 
 					$scope.data = {};
+					$scope.alert = {};
+					$scope.alert.message = HomeDataService.getStatus()
+							.getStatusMessage();
 
 					if (HomeDataService.getStatus().getStatusCode() == 0) {
-						$scope.alert = {};
 						$scope.alert.type = "success";
-						$scope.alert.message = HomeDataService.getStatus()
-								.getStatusMessage();
+					} else {
+						$scope.alert.type = "error";
 					}
 
 					$scope.today = function() {
@@ -82,6 +86,12 @@ angular.module('homeApp')
 							return;
 						}
 
+						ExpenseService.submitExpense($scope.data).then(
+								function() {
+									$state.go('home', {}, {
+										reload : true
+									});
+								});
 					}
 
 				} ])

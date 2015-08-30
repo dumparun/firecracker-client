@@ -33,6 +33,8 @@ angular.module('loginApp')
 	                }
 	                
 	                $scope.signIn = function() {
+	                	HomeDataService.getStatus().setStatusCode(0);
+	                	HomeDataService.getStatus().setStatusMessage("Welcome");
 	                	$state.go('home');
 	                	return;
 	                console.log("signing in");
