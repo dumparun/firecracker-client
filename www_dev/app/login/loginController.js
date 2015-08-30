@@ -33,7 +33,8 @@ angular.module('loginApp')
 	                }
 	                
 	                $scope.signIn = function() {
-	                
+	                	$state.go('home');
+	                	return;
 	                console.log("signing in");
 	                $cordovaOauth.google(clientID, ["https://www.googleapis.com/auth/userinfo.email", "https://www.googleapis.com/auth/userinfo.email"]).then(function(result) {
 	                    console.log(JSON.stringify(result));
