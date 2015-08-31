@@ -28,4 +28,10 @@ angular.module('homeApp')
 						$state.go('viewExpenseCriteria');
 					}
 
+					$scope.makePlan = function() {
+						HomeDataService.getStatus().setStatusCode(999);
+						HomeDataService.getStatus().setStatusMessage("");
+						$state.go('makePlan');
+					}
+
 				} ])

@@ -47,6 +47,12 @@ angular.module('mtureApp')
 						url : '/viewExpense',
 						templateUrl : 'app/expense/viewExpense.htm',
 						controller : 'ViewExpenseController'
+					})
+					
+					.state('makePlan', {
+						url : '/makePlan',
+						templateUrl : 'app/plans/planning.htm',
+						controller : 'PlanningController'
 					});
 
 					$urlRouterProvider.otherwise('/login');

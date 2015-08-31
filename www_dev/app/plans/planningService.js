@@ -9,10 +9,10 @@
  *
  */
 
-angular.module('expenseApp')
+angular.module('planApp')
 
 .service(
-        'ExpenseService',
+        'PlanningService',
         [
                 'CommsService', 'CommsDataService', 'HomeDataService',
                 function( CommsService, CommsDataService, HomeDataService) {
