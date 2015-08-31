@@ -1,0 +1,53 @@
+<ion-view view-title="Expense"> <ion-nav-bar
+	class="bar-balanced"> <ion-nav-back-button
+	class="button-clear"> <i class="ion-arrow-left-c"></i>
+Back </ion-nav-back-button> </ion-nav-bar> <ion-content has-bouncing="false"> <mt-alert>
+</mt-alert>
+
+<form name="expenseViewCriteriaForm" novalidate=""
+	ng-submit="viewChoice(expenseViewCriteriaForm)">
+	<div class="col-md-6 padding-top">
+		<p class="input-group">
+			<input type="text" class="form-control" required name="date"
+				ng-model="data.date" datepicker-popup="{{format}}"
+				is-open="status.opened" min-date="minDate" max-date="'2020-06-22'"
+				datepicker-options="dateOptions" close-text="Close" /> <span
+				class="input-group-btn"
+				ng-class="{ 'has-error' : expenseSubmitForm.date.$invalid}">
+				<button type="button" class="btn btn-default"
+					ng-click="open($event)">
+					<i class="glyphicon glyphicon-calendar"></i>
+				</button>
+			</span>
+		<div class="form-errors" ng-messages="expenseSubmitForm.date.$error">
+			<div class="form-error" ng-message="required">Please select a
+				date</div>
+			<div ng-messages-include="app/templates/errors.htm"></div>
+		</div>
+		</p>
+	</div>
+
+	<div class="col">
+		<ui-select name="month" ng-model="data.month" required
+			title="Choose Month"> <ui-select-match
+			placeholder="Select Month...">{{$select.selected}}</ui-select-match>
+		<ui-select-choices repeat="month in months | filter: $select.search">
+		<div ng-bind-html="month | highlight: $select.search"></div>
+		</ui-select-choices> </ui-select>
+	</div>
+
+	<div class="col">
+		<ui-select name="year" ng-model="data.year" required
+			title="Choose Year"> <ui-select-match
+			placeholder="Select Year...">{{$select.selected}}</ui-select-match> <ui-select-choices
+			repeat="year in years | filter: $select.search">
+		<div ng-bind-html="year | highlight: $select.search"></div>
+		</ui-select-choices> </ui-select>
+	</div>
+
+	<div class="col">
+		<button class="button button-block button-balanced">Get it</button>
+	</div>
+
+</form>
+</ion-content> </ion-view>

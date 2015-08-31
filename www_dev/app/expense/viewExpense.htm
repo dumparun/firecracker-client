@@ -1,0 +1,33 @@
+<ion-view view-title="Expense"> <ion-nav-bar
+	class="bar-balanced"> <ion-nav-back-button
+	class="button-clear"> <i class="ion-arrow-left-c"></i>
+Back </ion-nav-back-button> </ion-nav-bar> <ion-content has-bouncing="false"> <mt-alert>
+</mt-alert> <ion-scroll direction="x" style="width: 100%" scrollbar-x="false"
+	delegate-handle="head" zooming="true"
+	on-scroll="scrollMirror('head', 'list')">
+<div class="item item-header item-positive row row-item min-705">
+	<div class="col col-left col-10">#</div>
+	<div class="col col-right col-sep ">Description</div>
+	<div class="col col-right col-sep ">Category</div>
+	<div class="col col-right col-sep ">Payment Type</div>
+	<div class="col col-right col-sep ">Amount</div>
+</div>
+</ion-scroll> <ion-scroll direction="xy" style="height: 100%" zooming="true"
+	on-scroll="scrollMirror('list', 'head')" delegate-handle="list">
+<div class="item row row-item"
+	ng-repeat="row in data.expenseList">
+	<div class="col col-left col-10">{{ $index }}</div>
+	<div class="col col-right col-sep">{{ row.description }}</div>
+	<firecracker-Category text={{row.category}}></firecracker-Category>
+	<firecracker-Paymenttype text={{row.paymenttype}}>
+	</firecracker-Paymenttype>
+	<div class="col col-right col-sep">{{ row.amount }}</div>
+</div>
+<div class="item item-footer item-positive row row-item min-705">
+	<div class="col col-left">Total</div>
+	<div class="col col-right"></div>
+	<div class="col col-right"></div>
+	<div class="col col-right"></div>
+	<div class="col col-right ">{{data.total}}</div>
+</div>
+</ion-scroll> </ion-content> </ion-view>

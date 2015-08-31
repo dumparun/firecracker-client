@@ -30,6 +30,9 @@ $dark:                            #444 !default;
   border-radius: 32px;
   color: black; }
 
+.col-sep {
+  border-left: 1px solid lightgray; }
+
 /** Styling for the username field **/
 label.item.has-error {
   border-bottom: 2px solid red; }

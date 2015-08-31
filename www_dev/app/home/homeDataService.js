@@ -17,6 +17,8 @@ angular.module('homeApp').service('HomeDataService',
 
 			var status = new ResponseStatusDataService();
 
+			var listOfExpenses = {};
+
 			this.setEmailID = function(emailId) {
 				this.emailId = emailId;
 			};
@@ -33,4 +35,12 @@ angular.module('homeApp').service('HomeDataService',
 			this.getStatus = function() {
 				return status;
 			};
+
+			this.setExpenseList = function(exp) {
+				this.listOfExpenses = exp;
+			}
+
+			this.getExpenseList = function() {
+				return this.listOfExpenses;
+			}
 		} ]);

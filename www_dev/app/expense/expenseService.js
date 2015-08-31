@@ -45,6 +45,34 @@ angular.module('loginApp')
 			                	HomeDataService.getStatus().setStatusMessage("Expense Was not Submitted, Please try again");
 			                });
 		                },
+		                
+		                getExpense : function(data) {
+
+		                	var postData = {
+		                			'date' : data.date,
+		                			'month' : data.month,
+		                			'year' : data.year,
+		                	}
+		                	
+			                commsData = new CommsDataService;
+			                commsData.setLoadingTemplate("Retrieving Expense ...");
+			                commsData.setURLPath("V1/Expense/getExpense");
+			                commsData.setPostData(postData);
+			                
+			                return new CommsService.communicate(commsData).then(function(response) {
+
+			                	console.log(response.data);
+			                	HomeDataService.getStatus().setStatusCode(response.data.status.code);
+			                	HomeDataService.getStatus().setStatusMessage(response.data.status.message);
+			                	HomeDataService.setExpenseList(response.data.listOfExpenses);
+			                })
+			                .catch(function(response) {
+			                	console.error(response);
+			                	HomeDataService.getStatus().setStatusCode(901);
+			                	HomeDataService.getStatus().setStatusMessage("Expense Was not Submitted, Please try again");
+			                });
+		                },
+		                
 	                }
                 }
         ]);
