@@ -97,8 +97,7 @@ angular
 								break;
 							}
 							elem
-									.replaceWith('<div class="col col-right col-sep">'
-											+ category + '</div>');
+									.replaceWith('<div class="col col-right col-sep">'+category+'</div>');
 						}
 					};
 				} ])
@@ -126,15 +125,14 @@ angular
 								paymentType = 'CITI';
 								break;
 							case '5':
-								paymentType = 'US Bank';
+								paymentType = 'USBank';
 								break;
 							case '6':
 								paymentType = 'CapitalOne';
 								break;
 							}
 							elem
-									.replaceWith('<div class="col col-right col-sep">'
-											+ paymentType + '</div>');
+									.replaceWith('<div class="col col-right col-sep"><img src="css/images/'+ paymentType +'.png" width=30px"/></div>');
 						}
 					};
 				} ]);
