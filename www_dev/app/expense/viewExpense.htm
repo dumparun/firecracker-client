@@ -14,16 +14,21 @@ Back </ion-nav-back-button> </ion-nav-bar> <ion-content has-bouncing="false"> <m
 </div>
 </ion-scroll> <ion-scroll direction="xy" style="height: 100%" zooming="true"
 	on-scroll="scrollMirror('list', 'head')" delegate-handle="list">
-<div class="item row row-item"
-	ng-repeat="row in data.expenseList">
-	<div class="col col-left col-10">{{ $index }}</div>
-	<div class="col col-right col-sep">{{ row.description }}</div>
-	<firecracker-Category text={{row.category}}></firecracker-Category>
-	<firecracker-Paymenttype text={{row.paymenttype}}>
-	</firecracker-Paymenttype>
-	<div class="col col-right col-sep">{{ row.amount }}</div>
+	<div  ng-repeat="(keylist, list1) in data.expenseList">
+<div class="item row row-item">
+	{{keylist}} 
+	</div>
+	<div class="item row row-item" ng-repeat="row in list1">
+		<div class="col col-left col-10">{{ $index + 1 }}</div>
+		<div class="col col-right col-sep">{{ row.description }}</div>
+		<firecracker-Category text={{row.category}}></firecracker-Category>
+		<firecracker-Paymenttype text={{row.paymenttype}}>
+		</firecracker-Paymenttype>
+		<div class="col col-right col-sep">{{ row.amount }}</div>
+	</div>
+
 </div>
-<div class="item item-footer item-positive row row-item min-705">
+<div class="item item-footer item-positive row row-item">
 	<div class="col col-left">Total</div>
 	<div class="col col-right"></div>
 	<div class="col col-right"></div>
