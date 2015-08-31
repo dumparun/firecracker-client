@@ -68,7 +68,7 @@ gulp.task('fullbuildandroid', function() {
 });
 
 gulp.task('cordovaRemovePlugins', shell
-		.task([ 'node hooks/after_prepare/010_install_plugins.js remove' ]));
+		.task([ 'node hooks/after_platform_add/010_install_plugins.js remove' ]));
 
 
 gulp.task('cordovaRemoveIOS', shell
@@ -83,7 +83,7 @@ gulp.task('cordovaAddAndroid', shell.task([ 'ionic platform add android' ]));
 
 gulp.task('cordovaAndroid', shell.task([ 'cordova build android --release' ]));
 
-gulp.task('cordovaIOS', shell.task([ 'cordova build ios --release' ]));
+gulp.task('cordovaIOS', shell.task([ 'ionic build ios --release' ]));
 
 gulp.task('copyReleaseBuildToReleaseFolder', function() {
 
