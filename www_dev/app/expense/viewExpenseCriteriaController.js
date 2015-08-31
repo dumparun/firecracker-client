@@ -38,12 +38,11 @@ angular
 							}
 
 							$scope.today = function() {
-								$scope.data.date = new Date();
+								$scope.data.calDate = new Date();
 							};
-							$scope.today();
 
 							$scope.clear = function() {
-								$scope.data.date = null;
+								$scope.data.calDate = null;
 							};
 
 							$scope.open = function($event) {
@@ -62,18 +61,6 @@ angular
 							$scope.status = {
 								opened : false
 							};
-
-							var tomorrow = new Date();
-							tomorrow.setDate(tomorrow.getDate() + 1);
-							var afterTomorrow = new Date();
-							afterTomorrow.setDate(tomorrow.getDate() + 2);
-							$scope.events = [ {
-								date : tomorrow,
-								status : 'full'
-							}, {
-								date : afterTomorrow,
-								status : 'partially'
-							} ];
 
 							$scope.years = [ '2010', '2011', '2012', '2013',
 									'2014', '2015' ];

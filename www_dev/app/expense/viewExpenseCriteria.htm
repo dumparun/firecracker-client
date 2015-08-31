@@ -8,10 +8,10 @@ Back </ion-nav-back-button> </ion-nav-bar> <ion-content has-bouncing="false"> <m
 	ng-submit="viewChoice(expenseViewCriteriaForm)">
 	<div class="col-md-6 padding-top">
 		<p class="input-group">
-			<input type="text" class="form-control" required name="date"
-				ng-model="data.date" datepicker-popup="{{format}}"
-				is-open="status.opened" min-date="minDate" max-date="'2020-06-22'"
-				datepicker-options="dateOptions" close-text="Close" /> <span
+			<input type="text" class="form-control" required name="calDate"
+				ng-model="data.calDate" datepicker-popup="{{format}}"
+				is-open="status.opened" max-date="'2020-06-22'"
+				datepicker-options="{{dateOptions}}" close-text="Close" /> <span
 				class="input-group-btn"
 				ng-class="{ 'has-error' : expenseSubmitForm.date.$invalid}">
 				<button type="button" class="btn btn-default"

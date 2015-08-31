@@ -21,7 +21,7 @@ angular.module('loginApp')
 		                submitExpense : function(data) {
 
 		                	var postData = {
-		                			'date' : data.date,
+		                			'date' : data.calDate,
 		                			'description' : data.description,
 		                			'category' : data.category,
 		                			'paymentType' : data.paymentType,
@@ -49,7 +49,7 @@ angular.module('loginApp')
 		                getExpense : function(data) {
 
 		                	var postData = {
-		                			'date' : data.date,
+		                			'date' : data.calDate,
 		                			'month' : data.month,
 		                			'year' : data.year,
 		                	}
