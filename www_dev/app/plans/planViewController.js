@@ -41,7 +41,9 @@ angular
 							
 							$scope.getRowClass = function(plannedAmount,expenditure){
 								var cl = 'undercontrol';
-								if(parseFloat(plannedAmount) <= parseFloat(expenditure)){
+								if(parseFloat(expenditure) == 0 ){
+									 cl = 'undercontrol';
+								}else if(parseFloat(plannedAmount) <= parseFloat(expenditure)){
 									cl = 'overshoot';
 								}else if (parseFloat(plannedAmount) >= (parseFloat(expenditure) * 0.75)){
 									cl = 'nearingLimit';

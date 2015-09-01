@@ -37,7 +37,16 @@ angular.module('homeApp')
 					$scope.howBad = function() {
 							PlanningService.getPlan()
 									.then(function() {
-										$state.go('howBad');
+										if(HomeDataService.getStatus().getStatusCode() != 0){
+											$state.go($state.current.name, {}, {
+						                        reload : true
+					                        });
+										}else{
+											HomeDataService.getStatus().setStatusCode(999);
+											HomeDataService.getStatus().setStatusMessage("");
+											$state.go('howBad');	
+										}
+										
 									});
 						}
 

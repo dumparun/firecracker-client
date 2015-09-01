@@ -38,6 +38,10 @@ angular
 							}
 
 							$scope.data.total = 0;
+
+							$scope.findTotal = function(rowAmount) {
+								$scope.data.total = (parseFloat($scope.data.total) + parseFloat(rowAmount)).toFixed(2);
+							}
 							$scope.data.expenseList = HomeDataService
 									.getExpenseList();
 

@@ -1,20 +1,19 @@
 <ion-view view-title="Expense"> <ion-nav-bar
 	class="bar-balanced"> <ion-nav-back-button
 	class="button-clear"> <i class="ion-arrow-left-c"></i>
-Back </ion-nav-back-button> </ion-nav-bar> <mt-alert>
-</mt-alert> 
-<div class="item item-header item-positive row row-item min-705">
+Back </ion-nav-back-button> </ion-nav-bar> <mt-alert> </mt-alert>
+<ion-content has-bouncing="false">
+<div class="item item-header item-positive row row-item">
 	<div class="col col-left col-5">#</div>
 	<div class="col col-right col-sep col-50">Description</div>
 	<div class="col col-right col-sep col-15">Cat</div>
 	<div class="col col-right col-sep col-15">Pay</div>
 	<div class="col col-right col-sep col-15">Amount</div>
 </div>
-<ion-content has-bouncing="false">
-<div class="item row row-item">
-	{{keylist}} 
-	</div>
-	<div class="item row row-item" ng-repeat="row in list1">
+
+<div ng-repeat="(keylist, list1) in data.expenseList">
+	<div class="item row row-item">{{keylist}}</div>
+	<div class="item row row-item" ng-repeat="row in list1" ng-init="findTotal(row.amount)">
 		<div class="col col-left  col-5">{{ $index + 1 }}</div>
 		<div class="col col-right col-sep  col-50">{{ row.description }}</div>
 		<firecracker-Category text={{row.category}}></firecracker-Category>
