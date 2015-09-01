@@ -1,10 +1,8 @@
 <ion-view view-title="Expense"> <ion-nav-bar
 	class="bar-balanced"> <ion-nav-back-button
 	class="button-clear"> <i class="ion-arrow-left-c"></i>
-Back </ion-nav-back-button> </ion-nav-bar> <ion-content has-bouncing="false"> <mt-alert>
-</mt-alert> <ion-scroll direction="x" style="width: 100%" scrollbar-x="false"
-	delegate-handle="head" zooming="true"
-	on-scroll="scrollMirror('head', 'list')">
+Back </ion-nav-back-button> </ion-nav-bar> <mt-alert>
+</mt-alert> 
 <div class="item item-header item-positive row row-item min-705">
 	<div class="col col-left col-5">#</div>
 	<div class="col col-right col-sep col-50">Description</div>
@@ -12,9 +10,7 @@ Back </ion-nav-back-button> </ion-nav-bar> <ion-content has-bouncing="false"> <m
 	<div class="col col-right col-sep col-15">Pay</div>
 	<div class="col col-right col-sep col-15">Amount</div>
 </div>
-</ion-scroll> <ion-scroll direction="xy" style="height: 100%" zooming="true"
-	on-scroll="scrollMirror('list', 'head')" delegate-handle="list">
-	<div  ng-repeat="(keylist, list1) in data.expenseList">
+<ion-content has-bouncing="false">
 <div class="item row row-item">
 	{{keylist}} 
 	</div>
@@ -35,4 +31,4 @@ Back </ion-nav-back-button> </ion-nav-bar> <ion-content has-bouncing="false"> <m
 	<div class="col col-right"></div>
 	<div class="col col-right ">{{data.total}}</div>
 </div>
-</ion-scroll> </ion-content> </ion-view>
+</ion-content> </ion-view>

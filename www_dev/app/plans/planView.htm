@@ -10,9 +10,15 @@ Back </ion-nav-back-button> </ion-nav-bar> <ion-content has-bouncing="false"> <m
 </div>
 <div ng-repeat="plannings in planningList">
 	<div class="item row row-item">
+	<div ng-init="findTotal(plannings.plannedAmount, plannings.expenditure)"></div>
 		<div class="col col-left col-50">{{plannings.category}}</div>
 		<div class="col col-right col-sep col-25">{{plannings.plannedAmount}}</div>
 		<div class="col col-right col-sep col-25">{{plannings.expenditure}}</div>
 	</div>
+</div>
+<div class="item item-footer item-positive row row-item">
+	<div class="col col-left col-50">TOTAL</div>
+	<div class="col col-right col-sep col-25">{{plannedTotal}}</div>
+	<div class="col col-right col-sep col-25">{{spentTotal}}</div>
 </div>
 </ion-content> </ion-view>

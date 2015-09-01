@@ -36,7 +36,14 @@ angular
 							} else {
 								$scope.alert.type = "error";
 							}
-
+							$scope.plannedTotal = 0;
+							$scope.spentTotal = 0;
+							
+							$scope.findTotal = function(plannedAmount,expenditure){
+								$scope.plannedTotal += parseFloat(plannedAmount);
+								$scope.spentTotal += parseFloat(expenditure);
+							}
+							
 							$scope.planningList = HomeDataService
 									.getExpenseList();
 
