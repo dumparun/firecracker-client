@@ -53,7 +53,14 @@ angular.module('mtureApp')
 						url : '/makePlan',
 						templateUrl : 'app/plans/planning.htm',
 						controller : 'PlanningController'
-					});
+					})
+					
+					.state('howBad', {
+						url : '/howBad',
+						templateUrl : 'app/plans/planView.htm',
+						controller : 'PlanViewController'
+					})
+					;
 
 					$urlRouterProvider.otherwise('/login');
 				} ],

@@ -18,45 +18,12 @@ angular.module('planApp')
                 function( CommsService, CommsDataService, HomeDataService) {
 
 	                return {
-		                submitExpense : function(data) {
+		                getPlan : function() {
 
-		                	var postData = {
-		                			'date' : data.calDate,
-		                			'description' : data.description,
-		                			'category' : data.category,
-		                			'paymentType' : data.paymentType,
-		                			'amount' : data.amount
-		                	}
-		                	
+		                	var postData = {};
 			                commsData = new CommsDataService;
-			                commsData.setLoadingTemplate("Submitting Expense ...");
-			                commsData.setURLPath("V1/Expense/submitDailyExpense");
-			                commsData.setPostData(postData);
-			                
-			                return new CommsService.communicate(commsData).then(function(response) {
-
-			                	console.log(response.data);
-			                	HomeDataService.getStatus().setStatusCode(response.data.status.code);
-			                	HomeDataService.getStatus().setStatusMessage(response.data.status.message);
-			                })
-			                .catch(function(response) {
-			                	console.error(response);
-			                	HomeDataService.getStatus().setStatusCode(901);
-			                	HomeDataService.getStatus().setStatusMessage("Expense Was not Submitted, Please try again");
-			                });
-		                },
-		                
-		                getExpense : function(data) {
-
-		                	var postData = {
-		                			'date' : data.calDate,
-		                			'month' : data.month,
-		                			'year' : data.year,
-		                	}
-		                	
-			                commsData = new CommsDataService;
-			                commsData.setLoadingTemplate("Retrieving Expense ...");
-			                commsData.setURLPath("V1/Expense/getExpense");
+			                commsData.setLoadingTemplate("Getting Plan...");
+			                commsData.setURLPath("V1/Expense/getPlanView");
 			                commsData.setPostData(postData);
 			                
 			                return new CommsService.communicate(commsData).then(function(response) {
@@ -72,7 +39,6 @@ angular.module('planApp')
 			                	HomeDataService.getStatus().setStatusMessage("Expense Was not Submitted, Please try again");
 			                });
 		                },
-		                
 	                }
                 }
         ]);

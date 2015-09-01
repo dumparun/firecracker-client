@@ -47,57 +47,57 @@ angular
 							var category = "";
 							switch (attrs["text"]) {
 							case '1':
-								category = 'Credit Cards';
+								category = 'CC';
 								break;
 							case '2':
-								category = 'Loans/Debts Paid Back';
+								category = 'loans';
 								break;
 							case '3':
-								category = 'Food at Hotels';
+								category = 'hotel';
 								break;
 							case '4':
-								category = 'Grocery & Home Stuffs';
+								category = 'grocery';
 								break;
 							case '5':
 							default:
-								category = 'Home Routine Expense';
+								category = 'home';
 								break;
 							case '6':
-								category = 'LIC/Investement';
+								category = 'investement';
 								break;
 							case '7':
-								category = 'Educational Expense';
+								category = 'education';
 								break;
 							case '8':
-								category = 'Medical Expense';
+								category = 'medical';
 								break;
 							case '9':
-								category = 'Others';
+								category = 'others';
 								break;
 							case '10':
-								category = 'Gas';
+								category = 'gas';
 								break;
 							case '11':
-								category = 'Snacks';
+								category = 'snacks';
 								break;
 							case '12':
-								category = 'Leisure & Shopping';
+								category = 'shopping';
 								break;
 							case '13':
-								category = 'Vehicle Expenses';
+								category = 'vehicle';
 								break;
 							case '14':
-								category = 'Business Initiative';
+								category = 'business';
 								break;
 							case '15':
-								category = 'Giving Back';
+								category = 'givingback';
 								break;
 							case '16':
-								category = 'Travelling Expense';
+								category = 'travel';
 								break;
 							}
 							elem
-									.replaceWith('<div class="col col-right col-sep">'+category+'</div>');
+									.replaceWith('<div class="col col-right col-sep  col-15"><img src="css/images/'+ category +'.png" width=30px"/></div>');
 						}
 					};
 				} ])
@@ -132,7 +132,7 @@ angular
 								break;
 							}
 							elem
-									.replaceWith('<div class="col col-right col-sep"><img src="css/images/'+ paymentType +'.png" width=30px"/></div>');
+									.replaceWith('<div class="col col-right col-sep  col-15"><img src="css/images/'+ paymentType +'.png" width=30px"/></div>');
 						}
 					};
 				} ]);

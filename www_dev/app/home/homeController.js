@@ -13,8 +13,8 @@ angular.module('homeApp')
 
 .controller(
 		'HomeController',
-		[ '$scope', '$state', 'HomeDataService', 'ExpenseService',
-				function($scope, $state, HomeDataService, ExpenseService) {
+		[ '$scope', '$state', 'HomeDataService', 'PlanningService',
+				function($scope, $state, HomeDataService, PlanningService) {
 
 					$scope.submitExpense = function() {
 						HomeDataService.getStatus().setStatusCode(999);
@@ -33,5 +33,12 @@ angular.module('homeApp')
 						HomeDataService.getStatus().setStatusMessage("");
 						$state.go('makePlan');
 					}
+					
+					$scope.howBad = function() {
+							PlanningService.getPlan()
+									.then(function() {
+										$state.go('howBad');
+									});
+						}
 
 				} ])

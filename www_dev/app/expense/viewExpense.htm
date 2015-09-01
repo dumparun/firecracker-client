@@ -6,11 +6,11 @@ Back </ion-nav-back-button> </ion-nav-bar> <ion-content has-bouncing="false"> <m
 	delegate-handle="head" zooming="true"
 	on-scroll="scrollMirror('head', 'list')">
 <div class="item item-header item-positive row row-item min-705">
-	<div class="col col-left col-10">#</div>
-	<div class="col col-right col-sep ">Description</div>
-	<div class="col col-right col-sep ">Category</div>
-	<div class="col col-right col-sep ">Pay</div>
-	<div class="col col-right col-sep ">Amount</div>
+	<div class="col col-left col-5">#</div>
+	<div class="col col-right col-sep col-50">Description</div>
+	<div class="col col-right col-sep col-15">Cat</div>
+	<div class="col col-right col-sep col-15">Pay</div>
+	<div class="col col-right col-sep col-15">Amount</div>
 </div>
 </ion-scroll> <ion-scroll direction="xy" style="height: 100%" zooming="true"
 	on-scroll="scrollMirror('list', 'head')" delegate-handle="list">
@@ -19,12 +19,12 @@ Back </ion-nav-back-button> </ion-nav-bar> <ion-content has-bouncing="false"> <m
 	{{keylist}} 
 	</div>
 	<div class="item row row-item" ng-repeat="row in list1">
-		<div class="col col-left col-10">{{ $index + 1 }}</div>
-		<div class="col col-right col-sep">{{ row.description }}</div>
+		<div class="col col-left  col-5">{{ $index + 1 }}</div>
+		<div class="col col-right col-sep  col-50">{{ row.description }}</div>
 		<firecracker-Category text={{row.category}}></firecracker-Category>
 		<firecracker-Paymenttype text={{row.paymenttype}}>
 		</firecracker-Paymenttype>
-		<div class="col col-right col-sep">{{ row.amount }}</div>
+		<div class="col col-right col-sep col-15">{{ row.amount }}</div>
 	</div>
 
 </div>

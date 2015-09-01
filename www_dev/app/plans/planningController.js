@@ -24,6 +24,27 @@ angular
 
 							$scope.data = {};
 
+							$scope.total = function() {
+								console.log($scope);
+								return ($scope.data.creditcard || 0)
+										+ ($scope.data.pbamount || 0)
+										+ ($scope.data.fhamount || 0)
+										+ ($scope.data.ghamount || 0)
+										+ ($scope.data.hramount || 0)
+										+ ($scope.data.licamount || 0)
+										+ ($scope.data.edamount || 0)
+										+ ($scope.data.meamount || 0)
+										+ ($scope.data.otheramount || 0)
+										+ ($scope.data.gasamount || 0)
+										+ ($scope.data.snackamount || 0)
+										+ ($scope.data.lshamount || 0)
+										+ ($scope.data.veamount || 0)
+										+ ($scope.data.gbamount || 0)
+										+ ($scope.data.biamount || 0)
+										+ ($scope.data.teamount || 0);
+
+							};
+
 							$scope.alert = {};
 							$scope.alert.message = HomeDataService.getStatus()
 									.getStatusMessage();
@@ -36,7 +57,6 @@ angular
 							} else {
 								$scope.alert.type = "error";
 							}
-
 
 							$scope.categories = [ 'Credit Cards',
 									'Loans/Debts Paid Back', 'Food at Hotels',
@@ -51,13 +71,13 @@ angular
 							$scope.paymentType = [ 'CASH', 'Amex', 'BOA',
 									'CITI', 'US Bank', 'CapitalOne' ];
 
-							$scope.submitExpense = function(expenseSubmitForm) {
-								if (expenseSubmitForm.$invalid) {
+							$scope.submitPlan= function(planningForm) {
+								if (planningForm.$invalid) {
 									return;
 								}
-
-								PlanningService.submitExpense($scope.data).then(
-										function() {
+								
+								PlanningService.submitExpense($scope.data)
+										.then(function() {
 											$state.go('submitExpense', {}, {
 												reload : true
 											});

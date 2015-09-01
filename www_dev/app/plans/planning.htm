@@ -1,75 +1,46 @@
 <ion-view view-title="Expense"> <ion-nav-bar
 	class="bar-balanced"> <ion-nav-back-button
 	class="button-clear"> <i class="ion-arrow-left-c"></i>
-Back </ion-nav-back-button> </ion-nav-bar> <ion-content has-bouncing="false"> <mt-alert>
-</mt-alert>
+Back </ion-nav-back-button> </ion-nav-bar> <mt-alert> </mt-alert>
 <form name="planningForm" novalidate=""
 	ng-submit="submitPlan(planningForm)">
 
-	<div class="col">
-		<label class="item item-input"
-			ng-class="{ 'has-error' : planningForm.ccamount.$invalid && planningForm.$submitted, }">
-			<input type="number" name="ccamount" ng-minlength="1"
-			ng-maxlength="10" required ng-model="data.ccamount"
-			placeholder="Credit Cards" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/"
-			step="0.01" />
-		</label>
-		<div class="form-errors"
-			ng-show="planningForm.ccamount.$error && planningForm.$submitted"
-			ng-messages="planningForm.ccamount.$error">
-			<div class="form-error" ng-message="required">Please enter
-				Amount</div>
-			<div class="form-error" ng-message="pattern">Only numbers and
-				two Decimal Digit</div>
-			<div ng-messages-include="app/templates/errors.htm"></div>
-		</div>
+	<div class="card" style="padding-top: 30px">
+		<div class="item item-divider">{{total()}}</div>
 	</div>
 
-	<div class="col">
-		<label class="item item-input"
-			ng-class="{ 'has-error' : planningForm.pbamount.$invalid && planningForm.$submitted, }">
-			<input type="number" name="pbamount" ng-minlength="1"
-			ng-maxlength="10" required ng-model="data.pbamount"
-			placeholder="Loans/Debts Paid Back"
+	<ion-content has-bouncing="false" style="top: 100px;">
+	<div class="list">
+		<label class="item item-input item-stacked-label"> <span
+			class="input-label">Credit Cards</span> <input type="number"
+			name="ccamount" ng-minlength="1" ng-maxlength="10" required
+			ng-model="data.ccamount" placeholder="Credit Cards"
+			ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" />
+		</label> 
+		
+		<label class="item item-input item-stacked-label"> <span
+			class="input-label">Loans/Debts Paid Back</span> <input type="number"
+			name="pbamount" ng-minlength="1" ng-maxlength="10" required
+			ng-model="data.pbamount" placeholder="Loans/Debts Paid Back"
+			ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" />
+		</label> 
+		
+		<label class="item item-input item-stacked-label"> <span
+			class="input-label">Food at Hotels</span> <input type="number"
+			name="fhamount" ng-minlength="1" ng-maxlength="10" required
+			ng-model="data.fhamount" placeholder="Food at Hotels"
 			ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" />
 		</label>
-		<div class="form-errors"
-			ng-show="planningForm.pbamount.$error && planningForm.$submitted"
-			ng-messages="planningForm.pbamount.$error">
-			<div class="form-error" ng-message="required">Please enter
-				Amount</div>
-			<div class="form-error" ng-message="pattern">Only numbers and
-				two Decimal Digit</div>
-			<div ng-messages-include="app/templates/errors.htm"></div>
-		</div>
 	</div>
 
-	<div class="col">
-		<label class="item item-input"
-			ng-class="{ 'has-error' : planningForm.fhamount.$invalid && planningForm.$submitted, }">
-			<input type="number" name="fhamount" ng-minlength="1"
-			ng-maxlength="10" required ng-model="data.fhamount"
-			placeholder="Food at Hotels" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/"
-			step="0.01" />
-		</label>
-		<div class="form-errors"
-			ng-show="planningForm.fhamount.$error && planningForm.$submitted"
-			ng-messages="planningForm.fhamount.$error">
-			<div class="form-error" ng-message="required">Please enter
-				Amount</div>
-			<div class="form-error" ng-message="pattern">Only numbers and
-				two Decimal Digit</div>
-			<div ng-messages-include="app/templates/errors.htm"></div>
-		</div>
-	</div>
 
 	<div class="col">
 		<label class="item item-input"
 			ng-class="{ 'has-error' : planningForm.ghamount.$invalid && planningForm.$submitted, }">
 			<input type="number" name="ghamount" ng-minlength="1"
 			ng-maxlength="10" required ng-model="data.ghamount"
-			placeholder="Grocery & Home Stuffs" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/"
-			step="0.01" />
+			placeholder="Grocery & Home Stuffs"
+			ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" />
 		</label>
 		<div class="form-errors"
 			ng-show="planningForm.ghamount.$error && planningForm.$submitted"
@@ -81,14 +52,14 @@ Back </ion-nav-back-button> </ion-nav-bar> <ion-content has-bouncing="false"> <m
 			<div ng-messages-include="app/templates/errors.htm"></div>
 		</div>
 	</div>
-	
+
 	<div class="col">
 		<label class="item item-input"
 			ng-class="{ 'has-error' : planningForm.hramount.$invalid && planningForm.$submitted, }">
 			<input type="number" name="hramount" ng-minlength="1"
 			ng-maxlength="10" required ng-model="data.hramount"
-			placeholder="Home Routine Expense" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/"
-			step="0.01" />
+			placeholder="Home Routine Expense"
+			ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" />
 		</label>
 		<div class="form-errors"
 			ng-show="planningForm.hramount.$error && planningForm.$submitted"
@@ -100,7 +71,7 @@ Back </ion-nav-back-button> </ion-nav-bar> <ion-content has-bouncing="false"> <m
 			<div ng-messages-include="app/templates/errors.htm"></div>
 		</div>
 	</div>
-	
+
 	<div class="col">
 		<label class="item item-input"
 			ng-class="{ 'has-error' : planningForm.licamount.$invalid && planningForm.$submitted, }">
@@ -119,14 +90,14 @@ Back </ion-nav-back-button> </ion-nav-bar> <ion-content has-bouncing="false"> <m
 			<div ng-messages-include="app/templates/errors.htm"></div>
 		</div>
 	</div>
-	
+
 	<div class="col">
 		<label class="item item-input"
 			ng-class="{ 'has-error' : planningForm.edamount.$invalid && planningForm.$submitted, }">
 			<input type="number" name="edamount" ng-minlength="1"
 			ng-maxlength="10" required ng-model="data.edamount"
-			placeholder="Educational Expense" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/"
-			step="0.01" />
+			placeholder="Educational Expense"
+			ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" />
 		</label>
 		<div class="form-errors"
 			ng-show="planningForm.edamount.$error && planningForm.$submitted"
@@ -138,7 +109,7 @@ Back </ion-nav-back-button> </ion-nav-bar> <ion-content has-bouncing="false"> <m
 			<div ng-messages-include="app/templates/errors.htm"></div>
 		</div>
 	</div>
-	
+
 	<div class="col">
 		<label class="item item-input"
 			ng-class="{ 'has-error' : planningForm.meamount.$invalid && planningForm.$submitted, }">
@@ -157,7 +128,7 @@ Back </ion-nav-back-button> </ion-nav-bar> <ion-content has-bouncing="false"> <m
 			<div ng-messages-include="app/templates/errors.htm"></div>
 		</div>
 	</div>
-	
+
 	<div class="col">
 		<label class="item item-input"
 			ng-class="{ 'has-error' : planningForm.otheramount.$invalid && planningForm.$submitted, }">
@@ -176,14 +147,13 @@ Back </ion-nav-back-button> </ion-nav-bar> <ion-content has-bouncing="false"> <m
 			<div ng-messages-include="app/templates/errors.htm"></div>
 		</div>
 	</div>
-	
+
 	<div class="col">
 		<label class="item item-input"
 			ng-class="{ 'has-error' : planningForm.gasamount.$invalid && planningForm.$submitted, }">
 			<input type="number" name="gasamount" ng-minlength="1"
 			ng-maxlength="10" required ng-model="data.gasamount"
-			placeholder="Gas" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/"
-			step="0.01" />
+			placeholder="Gas" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" />
 		</label>
 		<div class="form-errors"
 			ng-show="planningForm.gasamount.$error && planningForm.$submitted"
@@ -195,7 +165,7 @@ Back </ion-nav-back-button> </ion-nav-bar> <ion-content has-bouncing="false"> <m
 			<div ng-messages-include="app/templates/errors.htm"></div>
 		</div>
 	</div>
-	
+
 	<div class="col">
 		<label class="item item-input"
 			ng-class="{ 'has-error' : planningForm.snackamount.$invalid && planningForm.$submitted, }">
@@ -214,14 +184,14 @@ Back </ion-nav-back-button> </ion-nav-bar> <ion-content has-bouncing="false"> <m
 			<div ng-messages-include="app/templates/errors.htm"></div>
 		</div>
 	</div>
-	
+
 	<div class="col">
 		<label class="item item-input"
 			ng-class="{ 'has-error' : planningForm.lshamount.$invalid && planningForm.$submitted, }">
 			<input type="number" name="lshamount" ng-minlength="1"
 			ng-maxlength="10" required ng-model="data.lshamount"
-			placeholder="Leisure & Shopping" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/"
-			step="0.01" />
+			placeholder="Leisure & Shopping"
+			ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" />
 		</label>
 		<div class="form-errors"
 			ng-show="planningForm.lshamount.$error && planningForm.$submitted"
@@ -233,7 +203,7 @@ Back </ion-nav-back-button> </ion-nav-bar> <ion-content has-bouncing="false"> <m
 			<div ng-messages-include="app/templates/errors.htm"></div>
 		</div>
 	</div>
-	
+
 	<div class="col">
 		<label class="item item-input"
 			ng-class="{ 'has-error' : planningForm.veamount.$invalid && planningForm.$submitted, }">
@@ -252,14 +222,14 @@ Back </ion-nav-back-button> </ion-nav-bar> <ion-content has-bouncing="false"> <m
 			<div ng-messages-include="app/templates/errors.htm"></div>
 		</div>
 	</div>
-	
+
 	<div class="col">
 		<label class="item item-input"
 			ng-class="{ 'has-error' : planningForm.biamount.$invalid && planningForm.$submitted, }">
 			<input type="number" name="biamount" ng-minlength="1"
 			ng-maxlength="10" required ng-model="data.biamount"
-			placeholder="Business Initiative" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/"
-			step="0.01" />
+			placeholder="Business Initiative"
+			ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" />
 		</label>
 		<div class="form-errors"
 			ng-show="planningForm.biamount.$error && planningForm.$submitted"
@@ -271,7 +241,7 @@ Back </ion-nav-back-button> </ion-nav-bar> <ion-content has-bouncing="false"> <m
 			<div ng-messages-include="app/templates/errors.htm"></div>
 		</div>
 	</div>
-	
+
 	<div class="col">
 		<label class="item item-input"
 			ng-class="{ 'has-error' : planningForm.gbamount.$invalid && planningForm.$submitted, }">
@@ -290,14 +260,14 @@ Back </ion-nav-back-button> </ion-nav-bar> <ion-content has-bouncing="false"> <m
 			<div ng-messages-include="app/templates/errors.htm"></div>
 		</div>
 	</div>
-	
+
 	<div class="col">
 		<label class="item item-input"
 			ng-class="{ 'has-error' : planningForm.teamount.$invalid && planningForm.$submitted, }">
 			<input type="number" name="teamount" ng-minlength="1"
 			ng-maxlength="10" required ng-model="data.teamount"
-			placeholder="Travelling Expense" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/"
-			step="0.01" />
+			placeholder="Travelling Expense"
+			ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" />
 		</label>
 		<div class="form-errors"
 			ng-show="planningForm.teamount.$error && planningForm.$submitted"
@@ -312,5 +282,7 @@ Back </ion-nav-back-button> </ion-nav-bar> <ion-content has-bouncing="false"> <m
 	<div class="col">
 		<button class="button button-block button-balanced">Submit</button>
 	</div>
+
+	</ion-content>
 </form>
-</ion-content> </ion-view>
+</ion-view>
