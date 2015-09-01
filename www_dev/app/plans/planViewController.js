@@ -39,6 +39,21 @@ angular
 							$scope.plannedTotal = 0;
 							$scope.spentTotal = 0;
 							
+							$scope.getRowClass = function(plannedAmount,expenditure){
+								var cl = 'undercontrol';
+								if(parseFloat(plannedAmount) <= parseFloat(expenditure)){
+									cl = 'overshoot';
+								}else if (parseFloat(plannedAmount) >= (parseFloat(expenditure) * 0.75)){
+									cl = 'nearingLimit';
+								}else if (parseFloat(plannedAmount) >= (parseFloat(expenditure) * 0.5)){
+									cl = 'halfed';
+								}
+								console.log(parseFloat(plannedAmount));
+								console.log(parseFloat(expenditure));
+								console.log(cl);
+								return "item row row-item " + cl;
+							}
+							
 							$scope.findTotal = function(plannedAmount,expenditure){
 								$scope.plannedTotal += parseFloat(plannedAmount);
 								$scope.spentTotal += parseFloat(expenditure);

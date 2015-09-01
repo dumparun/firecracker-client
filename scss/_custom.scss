@@ -41,5 +41,23 @@
   flex: 0 0 15%;
   max-width: 15%; 
  }
-  
-  
+ 
+ .nearingLimit {
+ 	background: #FF9000;
+ 	color: white;
+ }
+ 
+ .overshoot {
+ 	background: red;
+ 	color: white;
+ }
+ 
+ .halfed {
+ 	background: yellow;
+ 	color: black;
+ }
+ 
+ .undercontrol {
+ 	background: white;
+ 	color: black;
+ } 

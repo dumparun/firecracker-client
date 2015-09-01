@@ -4,13 +4,13 @@
 Back </ion-nav-back-button> </ion-nav-bar> <ion-content has-bouncing="false"> <mt-alert>
 </mt-alert>
 <div class="item item-header item-positive row row-item min-705">
-	<div class="col col-right col-sep col-50">Category</div>
+	<div class="col col-right col-50">Category</div>
 	<div class="col col-right col-sep col-25">Planned</div>
 	<div class="col col-right col-sep col-25">Actual</div>
 </div>
 <div ng-repeat="plannings in planningList">
-	<div class="item row row-item">
-	<div ng-init="findTotal(plannings.plannedAmount, plannings.expenditure)"></div>
+	<div ng-class="getRowClass(plannings.plannedAmount, plannings.expenditure)" ng-init="findTotal(plannings.plannedAmount, plannings.expenditure)">
+		<div ></div>
 		<div class="col col-left col-50">{{plannings.category}}</div>
 		<div class="col col-right col-sep col-25">{{plannings.plannedAmount}}</div>
 		<div class="col col-right col-sep col-25">{{plannings.expenditure}}</div>
