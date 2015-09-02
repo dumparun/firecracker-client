@@ -60,7 +60,7 @@ angular.module('homeApp')
 					}
 
 					$scope.makePlan = function() {
-						PlanningService.getPlan(true).then(
+						PlanningService.getPlan("true").then(
 								function() {
 									if (HomeDataService.getStatus()
 											.getStatusCode() != 0) {
@@ -79,7 +79,7 @@ angular.module('homeApp')
 					}
 
 					$scope.howBad = function() {
-						PlanningService.getPlan(false).then(
+						PlanningService.getPlan("false").then(
 								function() {
 									if (HomeDataService.getStatus()
 											.getStatusCode() != 0) {
