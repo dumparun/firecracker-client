@@ -10,13 +10,13 @@
  */
 var mtureApp = angular.module('mtureApp', [ 'ionic', 'ngCordova', 'ngMessages',
 		'ui.bootstrap', 'ui.select', 'pascalprecht.translate', 'loginApp',
-		'homeApp', 'expenseApp', 'planApp', 'workflowApp', 'comms', 'file' ]);
+		'homeApp', 'expenseApp', 'planApp', 'incomeApp', 'comms', 'file' ]);
 
 angular.module('loginApp', []);
 
 angular.module('homeApp', []);
 
-angular.module('workflowApp', []);
+angular.module('incomeApp', []);
 
 angular.module('expenseApp', []);
 

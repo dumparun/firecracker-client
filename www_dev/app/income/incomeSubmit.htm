@@ -1,0 +1,33 @@
+<ion-view view-title="Expense"> <ion-nav-bar
+	class="bar-balanced"> <ion-nav-back-button
+	class="button-clear"> <i class="ion-arrow-left-c"></i>
+Back </ion-nav-back-button> </ion-nav-bar> <mt-alert> </mt-alert>
+<form name="form" novalidate="" ng-submit="submitForm(form)">
+
+	<ion-content has-bouncing="false" style="top: 100px;">
+	<div class="list">
+		<label class="item item-input item-stacked-label"> <span
+			class="input-label">Salary</span> <input type="number" name="salary"
+			ng-minlength="1" ng-maxlength="10" required ng-model="data.salary"
+			placeholder="Salary" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/"
+			step="0.01" />
+		</label> <label class="item item-input item-stacked-label"> <span
+			class="input-label">Other Office Income</span> <input type="number"
+			name="otherofficeincome" ng-minlength="1" ng-maxlength="10" required
+			ng-model="data.otherofficeincome" placeholder="Other Office Income"
+			ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" />
+		</label> <label class="item item-input item-stacked-label"> <span
+			class="input-label">Others</span> <input type="number" name="others"
+			ng-minlength="1" ng-maxlength="10" required ng-model="data.others"
+			placeholder="Others" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/"
+			step="0.01" />
+		</label>
+	</div>
+
+	<div class="col">
+		<button class="button button-block button-balanced">Submit</button>
+	</div>
+
+	</ion-content>
+</form>
+</ion-view>

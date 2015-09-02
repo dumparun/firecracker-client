@@ -60,6 +60,18 @@ angular.module('mtureApp')
 						templateUrl : 'app/plans/planView.htm',
 						controller : 'PlanViewController'
 					})
+					
+					.state('submitIncome', {
+						url : '/submitIncome',
+						templateUrl : 'app/income/incomeSubmit.htm',
+						controller : 'IncomeSubmitController'
+					})
+					
+					.state('viewIncome', {
+						url : '/viewIncome',
+						templateUrl : 'app/income/incomeView.htm',
+						controller : 'IncomeViewController'
+					})
 					;
 
 					$urlRouterProvider.otherwise('/login');

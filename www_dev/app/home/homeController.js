@@ -13,8 +13,13 @@ angular.module('homeApp')
 
 .controller(
 		'HomeController',
-		[ '$scope', '$state', 'HomeDataService', 'PlanningService',
-				function($scope, $state, HomeDataService, PlanningService) {
+		[
+				'$scope',
+				'$state',
+				'HomeDataService',
+				'PlanningService',
+				'IncomeService',
+				function($scope, $state, HomeDataService, PlanningService, IncomeService) {
 
 					$scope.submitExpense = function() {
 						HomeDataService.getStatus().setStatusCode(999);
@@ -33,21 +38,49 @@ angular.module('homeApp')
 						HomeDataService.getStatus().setStatusMessage("");
 						$state.go('makePlan');
 					}
+
+					$scope.submitIncome = function() {
+						HomeDataService.getStatus().setStatusCode(999);
+						HomeDataService.getStatus().setStatusMessage("");
+						$state.go('submitIncome');
+					}
+
+					$scope.viewIncome = function() {
+						IncomeService.getIncome().then(
+								function() {
+									if (HomeDataService.getStatus()
+											.getStatusCode() != 0) {
+										$state.go($state.current.name, {}, {
+											reload : true
+										});
+									} else {
+										HomeDataService.getStatus()
+												.setStatusCode(999);
+										HomeDataService.getStatus()
+												.setStatusMessage("");
+										$state.go('viewIncome');
+									}
+
+								});
+					}
 					
 					$scope.howBad = function() {
-							PlanningService.getPlan()
-									.then(function() {
-										if(HomeDataService.getStatus().getStatusCode() != 0){
-											$state.go($state.current.name, {}, {
-						                        reload : true
-					                        });
-										}else{
-											HomeDataService.getStatus().setStatusCode(999);
-											HomeDataService.getStatus().setStatusMessage("");
-											$state.go('howBad');	
-										}
-										
-									});
-						}
+						PlanningService.getPlan().then(
+								function() {
+									if (HomeDataService.getStatus()
+											.getStatusCode() != 0) {
+										$state.go($state.current.name, {}, {
+											reload : true
+										});
+									} else {
+										HomeDataService.getStatus()
+												.setStatusCode(999);
+										HomeDataService.getStatus()
+												.setStatusMessage("");
+										$state.go('howBad');
+									}
+
+								});
+					}
 
 				} ])
