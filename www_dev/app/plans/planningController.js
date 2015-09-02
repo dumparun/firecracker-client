@@ -25,23 +25,12 @@ angular
 							$scope.data = {};
 
 							$scope.total = function() {
-								console.log($scope);
-								return ($scope.data.creditcard || 0)
-										+ ($scope.data.pbamount || 0)
-										+ ($scope.data.fhamount || 0)
-										+ ($scope.data.ghamount || 0)
-										+ ($scope.data.hramount || 0)
-										+ ($scope.data.licamount || 0)
-										+ ($scope.data.edamount || 0)
-										+ ($scope.data.meamount || 0)
-										+ ($scope.data.otheramount || 0)
-										+ ($scope.data.gasamount || 0)
-										+ ($scope.data.snackamount || 0)
-										+ ($scope.data.lshamount || 0)
-										+ ($scope.data.veamount || 0)
-										+ ($scope.data.gbamount || 0)
-										+ ($scope.data.biamount || 0)
-										+ ($scope.data.teamount || 0);
+								var sum = 0;
+								
+								angular.forEach($scope.planningList, function(value, key) {
+									sum += value.plannedAmount;
+									}, sum);
+								return sum;
 
 							};
 
@@ -58,27 +47,20 @@ angular
 								$scope.alert.type = "error";
 							}
 
-							$scope.categories = [ 'Credit Cards',
-									'Loans/Debts Paid Back', 'Food at Hotels',
-									'Grocery & Home Stuffs',
-									'Home Routine Expense', 'LIC/Investement',
-									'Educational Expense', 'Medical Expense',
-									'Others', 'Gas', 'Snacks',
-									'Leisure & Shopping', 'Vehicle Expenses',
-									'Business Initiative', 'Giving Back',
-									'Travelling Expense' ];
+							$scope.planningList = HomeDataService
+									.getExpenseList();
+							$scope.income = $scope.planningList.income;
+							delete $scope.planningList.income;
 
-							$scope.paymentType = [ 'CASH', 'Amex', 'BOA',
-									'CITI', 'US Bank', 'CapitalOne' ];
-
-							$scope.submitPlan= function(planningForm) {
+							console.log($scope.planningList);
+							
+							$scope.submitPlan = function(planningForm) {
 								if (planningForm.$invalid) {
 									return;
 								}
-								
-								PlanningService.submitExpense($scope.data)
+								PlanningService.updatePlan($scope.planningList)
 										.then(function() {
-											$state.go('submitExpense', {}, {
+											$state.go('home', {}, {
 												reload : true
 											});
 										});

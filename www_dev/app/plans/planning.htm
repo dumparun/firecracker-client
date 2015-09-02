@@ -5,280 +5,31 @@ Back </ion-nav-back-button> </ion-nav-bar> <mt-alert> </mt-alert>
 <form name="planningForm" novalidate=""
 	ng-submit="submitPlan(planningForm)">
 
-	<div class="card" style="padding-top: 30px">
-		<div class="item item-divider">{{total()}}</div>
+	
+	<div class="item item-header item-positive row row-item" style="padding-top: 40px;">
+		<div class="col col-right col-50">INCOME</div>
+		<div class="col col-right col-50">{{income}}</div>
 	</div>
+	<div class="item item-header item-positive row row-item">
+		<div class="col col-right col-50">Total</div>
+		<div class="col col-right col-50">{{total()}}</div>
+	</div>
+	
+	<ion-content has-bouncing="false" style="top: 120px;">
 
-	<ion-content has-bouncing="false" style="top: 100px;">
 	<div class="list">
-		<label class="item item-input item-stacked-label"> <span
-			class="input-label">Credit Cards</span> <input type="number"
-			name="ccamount" ng-minlength="1" ng-maxlength="10" required
-			ng-model="data.ccamount" placeholder="Credit Cards"
-			ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" />
-		</label> 
-		
-		<label class="item item-input item-stacked-label"> <span
-			class="input-label">Loans/Debts Paid Back</span> <input type="number"
-			name="pbamount" ng-minlength="1" ng-maxlength="10" required
-			ng-model="data.pbamount" placeholder="Loans/Debts Paid Back"
-			ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" />
-		</label> 
-		
-		<label class="item item-input item-stacked-label"> <span
-			class="input-label">Food at Hotels</span> <input type="number"
-			name="fhamount" ng-minlength="1" ng-maxlength="10" required
-			ng-model="data.fhamount" placeholder="Food at Hotels"
-			ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" />
+		<label class="item item-input item-stacked-label"
+			ng-repeat="planning in planningList "> <span
+			class="input-label">{{planning.category}} ---> (
+				{{planning.expenditure}} )</span> <input type="number" name="planamount"
+			ng-minlength="1" ng-maxlength="10" required
+			ng-model="planning.plannedAmount"
+			ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" value=0 />
 		</label>
+
 	</div>
 
 
-	<div class="col">
-		<label class="item item-input"
-			ng-class="{ 'has-error' : planningForm.ghamount.$invalid && planningForm.$submitted, }">
-			<input type="number" name="ghamount" ng-minlength="1"
-			ng-maxlength="10" required ng-model="data.ghamount"
-			placeholder="Grocery & Home Stuffs"
-			ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" />
-		</label>
-		<div class="form-errors"
-			ng-show="planningForm.ghamount.$error && planningForm.$submitted"
-			ng-messages="planningForm.ghamount.$error">
-			<div class="form-error" ng-message="required">Please enter
-				Amount</div>
-			<div class="form-error" ng-message="pattern">Only numbers and
-				two Decimal Digit</div>
-			<div ng-messages-include="app/templates/errors.htm"></div>
-		</div>
-	</div>
-
-	<div class="col">
-		<label class="item item-input"
-			ng-class="{ 'has-error' : planningForm.hramount.$invalid && planningForm.$submitted, }">
-			<input type="number" name="hramount" ng-minlength="1"
-			ng-maxlength="10" required ng-model="data.hramount"
-			placeholder="Home Routine Expense"
-			ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" />
-		</label>
-		<div class="form-errors"
-			ng-show="planningForm.hramount.$error && planningForm.$submitted"
-			ng-messages="planningForm.hramount.$error">
-			<div class="form-error" ng-message="required">Please enter
-				Amount</div>
-			<div class="form-error" ng-message="pattern">Only numbers and
-				two Decimal Digit</div>
-			<div ng-messages-include="app/templates/errors.htm"></div>
-		</div>
-	</div>
-
-	<div class="col">
-		<label class="item item-input"
-			ng-class="{ 'has-error' : planningForm.licamount.$invalid && planningForm.$submitted, }">
-			<input type="number" name="licamount" ng-minlength="1"
-			ng-maxlength="10" required ng-model="data.licamount"
-			placeholder="LIC/Investement" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/"
-			step="0.01" />
-		</label>
-		<div class="form-errors"
-			ng-show="planningForm.licamount.$error && planningForm.$submitted"
-			ng-messages="planningForm.licamount.$error">
-			<div class="form-error" ng-message="required">Please enter
-				Amount</div>
-			<div class="form-error" ng-message="pattern">Only numbers and
-				two Decimal Digit</div>
-			<div ng-messages-include="app/templates/errors.htm"></div>
-		</div>
-	</div>
-
-	<div class="col">
-		<label class="item item-input"
-			ng-class="{ 'has-error' : planningForm.edamount.$invalid && planningForm.$submitted, }">
-			<input type="number" name="edamount" ng-minlength="1"
-			ng-maxlength="10" required ng-model="data.edamount"
-			placeholder="Educational Expense"
-			ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" />
-		</label>
-		<div class="form-errors"
-			ng-show="planningForm.edamount.$error && planningForm.$submitted"
-			ng-messages="planningForm.edamount.$error">
-			<div class="form-error" ng-message="required">Please enter
-				Amount</div>
-			<div class="form-error" ng-message="pattern">Only numbers and
-				two Decimal Digit</div>
-			<div ng-messages-include="app/templates/errors.htm"></div>
-		</div>
-	</div>
-
-	<div class="col">
-		<label class="item item-input"
-			ng-class="{ 'has-error' : planningForm.meamount.$invalid && planningForm.$submitted, }">
-			<input type="number" name="meamount" ng-minlength="1"
-			ng-maxlength="10" required ng-model="data.meamount"
-			placeholder="Medical Expense" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/"
-			step="0.01" />
-		</label>
-		<div class="form-errors"
-			ng-show="planningForm.meamount.$error && planningForm.$submitted"
-			ng-messages="planningForm.meamount.$error">
-			<div class="form-error" ng-message="required">Please enter
-				Amount</div>
-			<div class="form-error" ng-message="pattern">Only numbers and
-				two Decimal Digit</div>
-			<div ng-messages-include="app/templates/errors.htm"></div>
-		</div>
-	</div>
-
-	<div class="col">
-		<label class="item item-input"
-			ng-class="{ 'has-error' : planningForm.otheramount.$invalid && planningForm.$submitted, }">
-			<input type="number" name="otheramount" ng-minlength="1"
-			ng-maxlength="10" required ng-model="data.otheramount"
-			placeholder="Others" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/"
-			step="0.01" />
-		</label>
-		<div class="form-errors"
-			ng-show="planningForm.otheramount.$error && planningForm.$submitted"
-			ng-messages="planningForm.otheramount.$error">
-			<div class="form-error" ng-message="required">Please enter
-				Amount</div>
-			<div class="form-error" ng-message="pattern">Only numbers and
-				two Decimal Digit</div>
-			<div ng-messages-include="app/templates/errors.htm"></div>
-		</div>
-	</div>
-
-	<div class="col">
-		<label class="item item-input"
-			ng-class="{ 'has-error' : planningForm.gasamount.$invalid && planningForm.$submitted, }">
-			<input type="number" name="gasamount" ng-minlength="1"
-			ng-maxlength="10" required ng-model="data.gasamount"
-			placeholder="Gas" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" />
-		</label>
-		<div class="form-errors"
-			ng-show="planningForm.gasamount.$error && planningForm.$submitted"
-			ng-messages="planningForm.gasamount.$error">
-			<div class="form-error" ng-message="required">Please enter
-				Amount</div>
-			<div class="form-error" ng-message="pattern">Only numbers and
-				two Decimal Digit</div>
-			<div ng-messages-include="app/templates/errors.htm"></div>
-		</div>
-	</div>
-
-	<div class="col">
-		<label class="item item-input"
-			ng-class="{ 'has-error' : planningForm.snackamount.$invalid && planningForm.$submitted, }">
-			<input type="number" name="snackamount" ng-minlength="1"
-			ng-maxlength="10" required ng-model="data.snackamount"
-			placeholder="Snacks" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/"
-			step="0.01" />
-		</label>
-		<div class="form-errors"
-			ng-show="planningForm.snackamount.$error && planningForm.$submitted"
-			ng-messages="planningForm.snackamount.$error">
-			<div class="form-error" ng-message="required">Please enter
-				Amount</div>
-			<div class="form-error" ng-message="pattern">Only numbers and
-				two Decimal Digit</div>
-			<div ng-messages-include="app/templates/errors.htm"></div>
-		</div>
-	</div>
-
-	<div class="col">
-		<label class="item item-input"
-			ng-class="{ 'has-error' : planningForm.lshamount.$invalid && planningForm.$submitted, }">
-			<input type="number" name="lshamount" ng-minlength="1"
-			ng-maxlength="10" required ng-model="data.lshamount"
-			placeholder="Leisure & Shopping"
-			ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" />
-		</label>
-		<div class="form-errors"
-			ng-show="planningForm.lshamount.$error && planningForm.$submitted"
-			ng-messages="planningForm.lshamount.$error">
-			<div class="form-error" ng-message="required">Please enter
-				Amount</div>
-			<div class="form-error" ng-message="pattern">Only numbers and
-				two Decimal Digit</div>
-			<div ng-messages-include="app/templates/errors.htm"></div>
-		</div>
-	</div>
-
-	<div class="col">
-		<label class="item item-input"
-			ng-class="{ 'has-error' : planningForm.veamount.$invalid && planningForm.$submitted, }">
-			<input type="number" name="veamount" ng-minlength="1"
-			ng-maxlength="10" required ng-model="data.veamount"
-			placeholder="Vehicle Expenses" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/"
-			step="0.01" />
-		</label>
-		<div class="form-errors"
-			ng-show="planningForm.veamount.$error && planningForm.$submitted"
-			ng-messages="planningForm.veamount.$error">
-			<div class="form-error" ng-message="required">Please enter
-				Amount</div>
-			<div class="form-error" ng-message="pattern">Only numbers and
-				two Decimal Digit</div>
-			<div ng-messages-include="app/templates/errors.htm"></div>
-		</div>
-	</div>
-
-	<div class="col">
-		<label class="item item-input"
-			ng-class="{ 'has-error' : planningForm.biamount.$invalid && planningForm.$submitted, }">
-			<input type="number" name="biamount" ng-minlength="1"
-			ng-maxlength="10" required ng-model="data.biamount"
-			placeholder="Business Initiative"
-			ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" />
-		</label>
-		<div class="form-errors"
-			ng-show="planningForm.biamount.$error && planningForm.$submitted"
-			ng-messages="planningForm.biamount.$error">
-			<div class="form-error" ng-message="required">Please enter
-				Amount</div>
-			<div class="form-error" ng-message="pattern">Only numbers and
-				two Decimal Digit</div>
-			<div ng-messages-include="app/templates/errors.htm"></div>
-		</div>
-	</div>
-
-	<div class="col">
-		<label class="item item-input"
-			ng-class="{ 'has-error' : planningForm.gbamount.$invalid && planningForm.$submitted, }">
-			<input type="number" name="gbamount" ng-minlength="1"
-			ng-maxlength="10" required ng-model="data.gbamount"
-			placeholder="Giving Back" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/"
-			step="0.01" />
-		</label>
-		<div class="form-errors"
-			ng-show="planningForm.gbamount.$error && planningForm.$submitted"
-			ng-messages="planningForm.gbamount.$error">
-			<div class="form-error" ng-message="required">Please enter
-				Amount</div>
-			<div class="form-error" ng-message="pattern">Only numbers and
-				two Decimal Digit</div>
-			<div ng-messages-include="app/templates/errors.htm"></div>
-		</div>
-	</div>
-
-	<div class="col">
-		<label class="item item-input"
-			ng-class="{ 'has-error' : planningForm.teamount.$invalid && planningForm.$submitted, }">
-			<input type="number" name="teamount" ng-minlength="1"
-			ng-maxlength="10" required ng-model="data.teamount"
-			placeholder="Travelling Expense"
-			ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" />
-		</label>
-		<div class="form-errors"
-			ng-show="planningForm.teamount.$error && planningForm.$submitted"
-			ng-messages="planningForm.teamount.$error">
-			<div class="form-error" ng-message="required">Please enter
-				Amount</div>
-			<div class="form-error" ng-message="pattern">Only numbers and
-				two Decimal Digit</div>
-			<div ng-messages-include="app/templates/errors.htm"></div>
-		</div>
-	</div>
 	<div class="col">
 		<button class="button button-block button-balanced">Submit</button>
 	</div>

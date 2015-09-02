@@ -50,9 +50,6 @@ angular
 								}else if (parseFloat(plannedAmount) >= (parseFloat(expenditure) * 0.5)){
 									cl = 'halfed';
 								}
-								console.log(parseFloat(plannedAmount));
-								console.log(parseFloat(expenditure));
-								console.log(cl);
 								return "item row row-item " + cl;
 							}
 							
@@ -63,5 +60,5 @@ angular
 							
 							$scope.planningList = HomeDataService
 									.getExpenseList();
-
+							
 						} ])

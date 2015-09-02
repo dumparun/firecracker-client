@@ -19,7 +19,8 @@ angular.module('homeApp')
 				'HomeDataService',
 				'PlanningService',
 				'IncomeService',
-				function($scope, $state, HomeDataService, PlanningService, IncomeService) {
+				function($scope, $state, HomeDataService, PlanningService,
+						IncomeService) {
 
 					$scope.submitExpense = function() {
 						HomeDataService.getStatus().setStatusCode(999);
@@ -31,12 +32,6 @@ angular.module('homeApp')
 						HomeDataService.getStatus().setStatusCode(999);
 						HomeDataService.getStatus().setStatusMessage("");
 						$state.go('viewExpenseCriteria');
-					}
-
-					$scope.makePlan = function() {
-						HomeDataService.getStatus().setStatusCode(999);
-						HomeDataService.getStatus().setStatusMessage("");
-						$state.go('makePlan');
 					}
 
 					$scope.submitIncome = function() {
@@ -63,9 +58,28 @@ angular.module('homeApp')
 
 								});
 					}
-					
+
+					$scope.makePlan = function() {
+						PlanningService.getPlan(true).then(
+								function() {
+									if (HomeDataService.getStatus()
+											.getStatusCode() != 0) {
+										$state.go($state.current.name, {}, {
+											reload : true
+										});
+									} else {
+										HomeDataService.getStatus()
+												.setStatusCode(999);
+										HomeDataService.getStatus()
+												.setStatusMessage("");
+										$state.go('makePlan');
+									}
+
+								});
+					}
+
 					$scope.howBad = function() {
-						PlanningService.getPlan().then(
+						PlanningService.getPlan(false).then(
 								function() {
 									if (HomeDataService.getStatus()
 											.getStatusCode() != 0) {
