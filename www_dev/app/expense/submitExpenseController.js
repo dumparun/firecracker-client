@@ -75,11 +75,18 @@ angular
 							$scope.paymentType = [ 'CASH', 'Amex', 'BOA',
 									'CITI', 'US Bank', 'CapitalOne' ];
 
+							  $scope.toggleDropdown = function($event) {
+								    $event.preventDefault();
+								    $event.stopPropagation();
+								    $scope.status.isopen = !$scope.status.isopen;
+								  };
+							
+							$scope.setChoice = function(choice){
+								$scope.data.category = choice;
+							}
+									  
 							$scope.submitExpense = function(expenseSubmitForm) {
-								if (expenseSubmitForm.$invalid) {
-									return;
-								}
-
+								
 								ExpenseService.submitExpense($scope.data).then(
 										function() {
 											$state.go('submitExpense', {}, {

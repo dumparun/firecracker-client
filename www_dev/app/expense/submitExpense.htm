@@ -43,14 +43,16 @@ Back </ion-nav-back-button> </ion-nav-bar> <ion-content has-bouncing="false"> <m
 		</div>
 	</div>
 
-	<div class="col">
-		<ui-select name="category" ng-model="data.category" required
-			title="Choose a category"> <ui-select-match
-			placeholder="Select Category...">{{$select.selected}}</ui-select-match>
-		<ui-select-choices
-			repeat="category in categories | filter: $select.search">
-		<div ng-bind-html="category | highlight: $select.search"></div>
-		</ui-select-choices> </ui-select>
+
+	<div class="btn-group" dropdown is-open="status.isopen">
+		<button id="single-button" type="button" class="btn btn-primary"
+			dropdown-toggle ng-disabled="disabled">
+			Category <span class="caret"></span>
+		</button>
+		<ul class="dropdown-menu" role="menu" aria-labelledby="single-button" name="category"
+			ng-model="data.category" required >
+			<li role="menuitem" ng-repeat="category in categories"><a ng-click="setChoice(category)">{{category}}</a></li>
+		</ul>
 		<div class="form-errors"
 			ng-show="expenseSubmitForm.category.$error && expenseSubmitForm.$submitted"
 			ng-messages="expenseSubmitForm.category.$error">
@@ -58,6 +60,7 @@ Back </ion-nav-back-button> </ion-nav-bar> <ion-content has-bouncing="false"> <m
 			<div ng-messages-include="app/templates/errors.htm"></div>
 		</div>
 	</div>
+
 
 	<div class="col">
 		<ui-select name="paymentType" ng-model="data.paymentType" required
