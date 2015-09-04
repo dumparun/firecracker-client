@@ -8,14 +8,14 @@ Back </ion-nav-back-button> </ion-nav-bar> <ion-content has-bouncing="false"> <m
 
 	<div class="col-md-6 padding-top">
 		<p class="input-group">
-			<input ng-init="today()" type="text" class="form-control" required
+			<input type="text" class="form-control" required
 				name="calDate" ng-model="data.calDate" datepicker-popup="{{format}}"
-				is-open="status.opened" min-date="minDate" max-date="'2020-06-22'"
+				is-open="statusDt.opened" min-date="minDate" max-date="'2020-06-22'"
 				datepicker-options="{{dateOptions}}" close-text="Close" /> <span
 				class="input-group-btn"
 				ng-class="{ 'has-error' : expenseSubmitForm.date.$invalid}">
 				<button type="button" class="btn btn-default"
-					ng-click="open($event)">
+					ng-click="openDt($event)">
 					<i class="glyphicon glyphicon-calendar"></i>
 				</button>
 			</span>

@@ -49,10 +49,25 @@ angular
 								$scope.statusCt.opened = true;
 							};
 
+							$scope.openDt = function($event) {
+								$scope.statusDt.opened = true;
+							};
+
 							$scope.open = function($event) {
 								$scope.statusPt.opened = true;
 							};
 
+							$scope.statusDt = {
+								opened : false
+							};
+							$scope.statusPt = {
+								opened : false
+							};
+
+							$scope.statusCt = {
+								opened : false
+							};
+							
 							$scope.dateOptions = {
 								formatYear : 'yy',
 								startingDay : 1
@@ -61,13 +76,6 @@ angular
 							$scope.formats = [ 'dd-MMMM-yyyy', 'yyyy/MM/dd',
 									'dd.MM.yyyy', 'shortDate' ];
 							$scope.format = $scope.formats[0];
-
-							$scope.statusCt = {
-								opened : false
-							};
-							$scope.statusPt = {
-								opened : false
-							};
 
 							$scope.categories = [ 'Credit Cards',
 									'Loans/Debts Paid Back', 'Food at Hotels',
