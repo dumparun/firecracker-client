@@ -1,0 +1,45 @@
+<ion-view view-title="Reminder"> <ion-nav-bar
+	class="bar-balanced"> <ion-nav-back-button
+	class="button-clear"> <i class="ion-arrow-left-c"></i>
+Back </ion-nav-back-button> </ion-nav-bar> <ion-content has-bouncing="false"> <mt-alert> </mt-alert>
+<form name="form" novalidate="" ng-submit="submitReminder(form)">
+
+	<div class="col">
+		<label class="item item-input"
+			ng-class="{ 'has-error' : form.item.$invalid && form.$submitted, }">
+			<input type="text" name="item" ng-minlength="5" ng-maxlength="100"
+			required ng-model="data.item" placeholder="Item" />
+		</label>
+		<div class="form-errors" ng-show="form.item.$error && form.$submitted"
+			ng-messages="form.item.$error">
+			<div class="form-error" ng-message="required">Item name is
+				required</div>
+			<div ng-messages-include="app/templates/errors.htm"></div>
+		</div>
+	</div>
+
+	<div class="col-md-6 padding-top">
+		<p class="input-group">
+			<input type="text" class="form-control" required name="reminder"
+				ng-model="data.reminder" datepicker-popup="{{format}}"
+				is-open="statusDt.opened" min-date="minDate" max-date="'2020-06-22'"
+				datepicker-options="{{dateOptions}}" close-text="Close" /> <span
+				class="input-group-btn"
+				ng-class="{ 'has-error' : form.date.$invalid}">
+				<button type="button" class="btn btn-default"
+					ng-click="openDt($event)">
+					<i class="glyphicon glyphicon-calendar"></i>
+				</button>
+			</span>
+		<div class="form-errors" ng-messages="form.date.$error">
+			<div class="form-error" ng-message="required">Please select a
+				date</div>
+			<div ng-messages-include="app/templates/errors.htm"></div>
+		</div>
+		</p>
+	</div>
+<div class="col">
+		<button class="button button-block button-balanced">Submit</button>
+	</div>
+</form>
+</ion-content> </ion-view>

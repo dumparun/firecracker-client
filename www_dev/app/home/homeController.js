@@ -19,8 +19,9 @@ angular.module('homeApp')
 				'HomeDataService',
 				'PlanningService',
 				'IncomeService',
+				'ReminderService',
 				function($scope, $state, HomeDataService, PlanningService,
-						IncomeService) {
+						IncomeService, ReminderService) {
 
 					$scope.submitExpense = function() {
 						HomeDataService.getStatus().setStatusCode(999);
@@ -35,9 +36,22 @@ angular.module('homeApp')
 					}
 
 					$scope.submitIncome = function() {
-						HomeDataService.getStatus().setStatusCode(999);
-						HomeDataService.getStatus().setStatusMessage("");
-						$state.go('submitIncome');
+						IncomeService.getIncome().then(
+								function() {
+									if (HomeDataService.getStatus()
+											.getStatusCode() != 0) {
+										$state.go($state.current.name, {}, {
+											reload : true
+										});
+									} else {
+										HomeDataService.getStatus()
+												.setStatusCode(999);
+										HomeDataService.getStatus()
+												.setStatusMessage("");
+										$state.go('submitIncome');
+									}
+
+								});
 					}
 
 					$scope.viewIncome = function() {
@@ -97,4 +111,30 @@ angular.module('homeApp')
 								});
 					}
 
+
+					$scope.reminderSubmit = function() {
+						HomeDataService.getStatus().setStatusCode(999);
+						HomeDataService.getStatus().setStatusMessage("");
+						$state.go('reminderSubmit');
+					}
+					
+					$scope.reminderView = function() {
+						ReminderService.getReminder().then(
+								function() {
+									if (HomeDataService.getStatus()
+											.getStatusCode() != 0) {
+										$state.go($state.current.name, {}, {
+											reload : true
+										});
+									} else {
+										HomeDataService.getStatus()
+												.setStatusCode(999);
+										HomeDataService.getStatus()
+												.setStatusMessage("");
+										$state.go('reminderView');
+									}
+
+								});
+					}
+					
 				} ])

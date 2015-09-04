@@ -10,10 +10,10 @@
  */
 
 angular
-		.module('incomeApp')
+		.module('reminderApp')
 
 		.controller(
-				'IncomeViewController',
+				'ReminderViewController',
 				[
 						'$scope',
 						'$state',
@@ -34,8 +34,24 @@ angular
 							} else {
 								$scope.alert.type = "error";
 							}
-							
-							$scope.income = HomeDataService
-									.getExpenseList();
 
+							$scope.getRowClass = function(reminder) {
+
+								var rem = new Date(reminder).getDate();
+								var today = new Date().getDate();
+
+								var remains = rem - today;
+								console.log(remains);
+								var cl = 'undercontrol';
+								if (remains == 0 || remains == -1) {
+									cl = 'overshoot';
+								} else if (remains > 0 && remains < 4) {
+									cl = 'nearingLimit';
+								} else if (remains >  0 && remains < 7) {
+									cl = 'halfed';
+								}
+								return "item row row-item " + cl;
+							}
+
+							$scope.reminders = HomeDataService.getExpenseList();
 						} ])

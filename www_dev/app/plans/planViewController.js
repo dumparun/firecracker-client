@@ -60,5 +60,6 @@ angular
 							
 							$scope.planningList = HomeDataService
 									.getExpenseList();
-							
+							$scope.income = $scope.planningList.income;
+							delete $scope.planningList.income;
 						} ])

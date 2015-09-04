@@ -19,8 +19,7 @@ angular
 						'$state',
 						'HomeDataService',
 						'IncomeService',
-						function($scope, $state, HomeDataService,
-								IncomeService) {
+						function($scope, $state, HomeDataService, IncomeService) {
 
 							$scope.data = {};
 
@@ -37,13 +36,15 @@ angular
 								$scope.alert.type = "error";
 							}
 
-							$scope.submitForm= function(form) {
+							$scope.data = HomeDataService.getExpenseList();
+							
+							$scope.submitForm = function(form) {
 								if (form.$invalid) {
 									return;
 								}
-								
-								IncomeService.submitIncome($scope.data)
-										.then(function() {
+
+								IncomeService.submitIncome($scope.data).then(
+										function() {
 											$state.go('home', {}, {
 												reload : true
 											});

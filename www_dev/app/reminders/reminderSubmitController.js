@@ -10,17 +10,17 @@
  */
 
 angular
-		.module('expenseApp')
+		.module('reminderApp')
 
 		.controller(
-				'ViewExpenseCriteriaController',
+				'ReminderSubmitController',
 				[
 						'$scope',
 						'$state',
 						'HomeDataService',
-						'ExpenseService',
+						'ReminderService',
 						function($scope, $state, HomeDataService,
-								ExpenseService) {
+								ReminderService) {
 
 							$scope.data = {};
 
@@ -46,7 +46,11 @@ angular
 							};
 
 							$scope.openDt = function($event) {
-								$scope.status.opened = true;
+								$scope.statusDt.opened = true;
+							};
+
+							$scope.statusDt = {
+								opened : false
 							};
 
 							$scope.dateOptions = {
@@ -58,48 +62,13 @@ angular
 									'dd.MM.yyyy', 'shortDate' ];
 							$scope.format = $scope.formats[0];
 
-							$scope.status = {
-								opened : false
-							};
-
-							$scope.open = function() {
-								$scope.statusMn.opened = true;
-							};
-
-							$scope.open = function() {
-								$scope.statusYr.opened = true;
-							};
-
-							$scope.statusMn = {
-								opened : false
-							};
-
-							$scope.statusYr = {
-								opened : false
-							};
-
-							$scope.setMonth = function(choice) {
-								$scope.data.month = choice;
-							}
-							
-							$scope.setYear = function(choice) {
-								$scope.data.year = choice;
-							}
-
-							$scope.years = [ '2010', '2011', '2012', '2013',
-									'2014', '2015' ];
-
-							$scope.months = [ 'January', 'February', 'March',
-									'April', 'May', 'June', 'July', 'August',
-									'September', 'October', 'November',
-									'December' ];
-
-							$scope.viewChoice = function(
-									expenseViewCriteriaForm) {
-
-								ExpenseService.getExpense($scope.data).then(
+							$scope.submitReminder = function(form) {
+								if (form.$invalid) {
+									return;
+								}
+								ReminderService.addReminder($scope.data).then(
 										function() {
-											$state.go('viewExpense', {}, {
+											$state.go('home', {}, {
 												reload : true
 											});
 										});

@@ -1,0 +1,19 @@
+<ion-view view-title="Expense"> <ion-nav-bar
+	class="bar-balanced"> <ion-nav-back-button
+	class="button-clear"> <i class="ion-arrow-left-c"></i>
+Back </ion-nav-back-button> </ion-nav-bar> <ion-content has-bouncing="false"> <mt-alert>
+</mt-alert>
+
+<div class="item item-header item-positive row row-item">
+	<div class="col col-right col-10">Seq</div>
+	<div class="col col-right col-sep col-50">Item</div>
+	<div class="col col-right col-sep col-40">Date</div>
+</div>
+<div ng-repeat="reminder in reminders">
+	<div ng-class="getRowClass(reminder.reminder)"">
+		<div class="col col-left col-10">{{$index+1}}</div>
+		<div class="col col-right col-sep col-50">{{reminder.item}}</div>
+		<div class="col col-right col-sep col-40">{{reminder.reminder}}</div>
+	</div>
+</div>
+</ion-content> </ion-view>

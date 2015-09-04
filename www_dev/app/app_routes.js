@@ -42,37 +42,48 @@ angular.module('mtureApp')
 						templateUrl : 'app/expense/viewExpenseCriteria.htm',
 						controller : 'ViewExpenseCriteriaController'
 					})
-					
+
 					.state('viewExpense', {
 						url : '/viewExpense',
 						templateUrl : 'app/expense/viewExpense.htm',
 						controller : 'ViewExpenseController'
 					})
-					
+
 					.state('makePlan', {
 						url : '/makePlan',
 						templateUrl : 'app/plans/planning.htm',
 						controller : 'PlanningController'
 					})
-					
+
 					.state('howBad', {
 						url : '/howBad',
 						templateUrl : 'app/plans/planView.htm',
 						controller : 'PlanViewController'
 					})
-					
+
 					.state('submitIncome', {
 						url : '/submitIncome',
 						templateUrl : 'app/income/incomeSubmit.htm',
 						controller : 'IncomeSubmitController'
 					})
-					
+
 					.state('viewIncome', {
 						url : '/viewIncome',
 						templateUrl : 'app/income/incomeView.htm',
 						controller : 'IncomeViewController'
 					})
-					;
+
+					.state('reminderSubmit', {
+						url : '/reminderSubmit',
+						templateUrl : 'app/reminders/reminderSubmit.htm',
+						controller : 'ReminderSubmitController'
+					})
+
+					.state('reminderView', {
+						url : '/reminderView',
+						templateUrl : 'app/reminders/reminderView.htm',
+						controller : 'ReminderViewController'
+					});
 
 					$urlRouterProvider.otherwise('/login');
 				} ],

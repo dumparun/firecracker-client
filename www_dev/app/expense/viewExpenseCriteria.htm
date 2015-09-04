@@ -15,7 +15,7 @@ Back </ion-nav-back-button> </ion-nav-bar> <ion-content has-bouncing="false"> <m
 				class="input-group-btn"
 				ng-class="{ 'has-error' : expenseSubmitForm.date.$invalid}">
 				<button type="button" class="btn btn-default"
-					ng-click="open($event)">
+					ng-click="openDt($event)">
 					<i class="glyphicon glyphicon-calendar"></i>
 				</button>
 			</span>
@@ -28,22 +28,38 @@ Back </ion-nav-back-button> </ion-nav-bar> <ion-content has-bouncing="false"> <m
 	</div>
 
 	<div class="col">
-		<ui-select name="month" ng-model="data.month" required
-			title="Choose Month"> <ui-select-match
-			placeholder="Select Month...">{{$select.selected}}</ui-select-match>
-		<ui-select-choices repeat="month in months | filter: $select.search">
-		<div ng-bind-html="month | highlight: $select.search"></div>
-		</ui-select-choices> </ui-select>
+		<div class="btn-group fullwidth" dropdown is-open="statusMn.isopen">
+			<button id="monthbutton" type="button"
+				class="btn btn-primary fullwidth" dropdown-toggle
+				ng-disabled="disabled">
+				{{data.month}} <span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu fullwidth" role="menu"
+				aria-labelledby="monthbutton" name="month" ng-model="data.month"
+				required>
+				<li role="menuitem" ng-repeat="month in months"><a
+					ng-click="setMonth(month)">{{month}}</a></li>
+			</ul>
+		</div>
 	</div>
 
 	<div class="col">
-		<ui-select name="year" ng-model="data.year" required
-			title="Choose Year"> <ui-select-match
-			placeholder="Select Year...">{{$select.selected}}</ui-select-match> <ui-select-choices
-			repeat="year in years | filter: $select.search">
-		<div ng-bind-html="year | highlight: $select.search"></div>
-		</ui-select-choices> </ui-select>
+		<div class="btn-group fullwidth" dropdown is-open="statusYr.isopen">
+			<button id="yearbutton" type="button"
+				class="btn btn-primary fullwidth" dropdown-toggle
+				ng-disabled="disabled">
+				{{data.year}} <span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu fullwidth" role="menu"
+				aria-labelledby="yearbutton" name="year" ng-model="data.year"
+				required>
+				<li role="menuitem" ng-repeat="year in years"><a
+					ng-click="setYear(year)">{{year}}</a></li>
+			</ul>
+		</div>
 	</div>
+
+
 
 	<div class="col">
 		<button class="button button-block button-balanced">Get it</button>
