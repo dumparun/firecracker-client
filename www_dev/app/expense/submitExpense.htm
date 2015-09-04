@@ -8,8 +8,8 @@ Back </ion-nav-back-button> </ion-nav-bar> <ion-content has-bouncing="false"> <m
 
 	<div class="col-md-6 padding-top">
 		<p class="input-group">
-			<input type="text" class="form-control" required name="calDate"
-				ng-model="data.calDate" datepicker-popup="{{format}}"
+			<input ng-init="today()" type="text" class="form-control" required
+				name="calDate" ng-model="data.calDate" datepicker-popup="{{format}}"
 				is-open="status.opened" min-date="minDate" max-date="'2020-06-22'"
 				datepicker-options="{{dateOptions}}" close-text="Close" /> <span
 				class="input-group-btn"
@@ -43,39 +43,50 @@ Back </ion-nav-back-button> </ion-nav-bar> <ion-content has-bouncing="false"> <m
 		</div>
 	</div>
 
-
-	<div class="btn-group" dropdown is-open="status.isopen">
-		<button id="single-button" type="button" class="btn btn-primary"
-			dropdown-toggle ng-disabled="disabled">
-			Category <span class="caret"></span>
-		</button>
-		<ul class="dropdown-menu" role="menu" aria-labelledby="single-button" name="category"
-			ng-model="data.category" required >
-			<li role="menuitem" ng-repeat="category in categories"><a ng-click="setChoice(category)">{{category}}</a></li>
-		</ul>
-		<div class="form-errors"
-			ng-show="expenseSubmitForm.category.$error && expenseSubmitForm.$submitted"
-			ng-messages="expenseSubmitForm.category.$error">
-			<div class="form-error" ng-message="required">Choose a Category</div>
-			<div ng-messages-include="app/templates/errors.htm"></div>
+	<div class="col">
+		<div class="btn-group fullwidth" dropdown is-open="statusCt.isopen">
+			<button id="categorybutton" type="button"
+				class="btn btn-primary fullwidth" dropdown-toggle
+				ng-disabled="disabled">
+				{{data.category}} <span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu fullwidth" role="menu"
+				aria-labelledby="categorybutton" name="category"
+				ng-model="data.category" required>
+				<li role="menuitem" ng-repeat="category in categories"><a
+					ng-click="setCategory(category)">{{category}}</a></li>
+			</ul>
+			<div class="form-errors"
+				ng-show="expenseSubmitForm.category.$error && expenseSubmitForm.$submitted"
+				ng-messages="expenseSubmitForm.category.$error">
+				<div class="form-error" ng-message="required">Choose a
+					Category</div>
+				<div ng-messages-include="app/templates/errors.htm"></div>
+			</div>
 		</div>
 	</div>
 
 
 	<div class="col">
-		<ui-select name="paymentType" ng-model="data.paymentType" required
-			title="Choose Payment Type"> <ui-select-match
-			placeholder="Select Payment Type...">{{$select.selected}}</ui-select-match>
-		<ui-select-choices
-			repeat="type in paymentType | filter: $select.search">
-		<div ng-bind-html="type | highlight: $select.search"></div>
-		</ui-select-choices> </ui-select>
-		<div class="form-errors"
-			ng-show="expenseSubmitForm.paymentType.$error && expenseSubmitForm.$submitted"
-			ng-messages="expenseSubmitForm.paymentType.$error">
-			<div class="form-error" ng-message="required">Choose a Payment
-				Type</div>
-			<div ng-messages-include="app/templates/errors.htm"></div>
+		<div class="btn-group fullwidth" dropdown is-open="status.isopen">
+			<button id="paymenttypebutton" type="button"
+				class="btn btn-primary fullwidth" dropdown-toggle
+				ng-disabled="disabled">
+				{{data.paymentType}} <span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu fullwidth" role="menu"
+				aria-labelledby="paymenttypebutton" name="paymentType"
+				ng-model="data.paymentType" required>
+				<li role="menuitem" ng-repeat="type in paymentType"><a
+					ng-click="setPaymentType(type)">{{type}}</a></li>
+			</ul>
+			<div class="form-errors"
+				ng-show="expenseSubmitForm.paymentType.$error && expenseSubmitForm.$submitted"
+				ng-messages="expenseSubmitForm.paymentType.$error">
+				<div class="form-error" ng-message="required">Choose a Payment
+					Type</div>
+				<div ng-messages-include="app/templates/errors.htm"></div>
+			</div>
 		</div>
 	</div>
 

@@ -46,7 +46,11 @@ angular
 							};
 
 							$scope.open = function($event) {
-								$scope.status.opened = true;
+								$scope.statusCt.opened = true;
+							};
+
+							$scope.open = function($event) {
+								$scope.statusPt.opened = true;
 							};
 
 							$scope.dateOptions = {
@@ -58,7 +62,10 @@ angular
 									'dd.MM.yyyy', 'shortDate' ];
 							$scope.format = $scope.formats[0];
 
-							$scope.status = {
+							$scope.statusCt = {
+								opened : false
+							};
+							$scope.statusPt = {
 								opened : false
 							};
 
@@ -75,18 +82,31 @@ angular
 							$scope.paymentType = [ 'CASH', 'Amex', 'BOA',
 									'CITI', 'US Bank', 'CapitalOne' ];
 
-							  $scope.toggleDropdown = function($event) {
-								    $event.preventDefault();
-								    $event.stopPropagation();
-								    $scope.status.isopen = !$scope.status.isopen;
-								  };
-							
-							$scope.setChoice = function(choice){
+							$scope.toggleDropdown = function($event) {
+								$event.preventDefault();
+								$event.stopPropagation();
+								$scope.status.isopen = !$scope.status.isopen;
+							};
+
+							$scope.setCategory = function(choice) {
 								$scope.data.category = choice;
 							}
-									  
+
+							$scope.setPaymentType = function(choice) {
+								$scope.data.paymentType = choice;
+							}
+
+							$scope.data.category = "Others";
+
+							$scope.data.paymentType = "CASH";
+
 							$scope.submitExpense = function(expenseSubmitForm) {
-								
+
+								console.log($scope.data);
+								if (expenseSubmitForm.$invalid) {
+									return;
+								}
+
 								ExpenseService.submitExpense($scope.data).then(
 										function() {
 											$state.go('submitExpense', {}, {

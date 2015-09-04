@@ -67,6 +67,9 @@ $dark:                            #444 !default;
   background: white;
   color: black; }
 
+.fullwidth {
+  width: 100%; }
+
 /** Styling for the username field **/
 label.item.has-error {
   border-bottom: 2px solid red; }
