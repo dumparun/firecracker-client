@@ -45,9 +45,9 @@ angular
 									 cl = 'undercontrol';
 								}else if(parseFloat(plannedAmount) <= parseFloat(expenditure)){
 									cl = 'overshoot';
-								}else if (parseFloat(plannedAmount) >= (parseFloat(expenditure) * 0.75)){
+								}else if ( parseFloat(expenditure) >= (parseFloat(plannedAmount) * 0.75)){
 									cl = 'nearingLimit';
-								}else if (parseFloat(plannedAmount) >= (parseFloat(expenditure) * 0.5)){
+								}else if ( parseFloat(expenditure) >= (parseFloat(plannedAmount) * 0.5)){
 									cl = 'halfed';
 								}
 								return "item row row-item " + cl;
