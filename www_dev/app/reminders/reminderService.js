@@ -40,6 +40,52 @@ angular.module('reminderApp')
 			                });
 		                },
 		                
+		                resetReminder : function() {
+
+		                	var postData = {};
+			                commsData = new CommsDataService;
+			                commsData.setLoadingTemplate("Resetting Reminder...");
+			                commsData.setURLPath("V1/Expense/resetReminders");
+			                commsData.setPostData(postData);
+			                
+			                return new CommsService.communicate(commsData).then(function(response) {
+
+			                	console.log(response.data);
+			                	HomeDataService.getStatus().setStatusCode(response.data.status.code);
+			                	HomeDataService.getStatus().setStatusMessage(response.data.status.message);
+			                	HomeDataService.setExpenseList(response.data.listOfExpenses);
+			                })
+			                .catch(function(response) {
+			                	console.error(response);
+			                	HomeDataService.getStatus().setStatusCode(901);
+			                	HomeDataService.getStatus().setStatusMessage("Reminder Was not Submitted, Please try again");
+			                });
+		                },
+		                
+		                paid : function(sequence) {
+
+		                	var postData = {
+		                			'itemId' : sequence
+		                	};
+			                commsData = new CommsDataService;
+			                commsData.setLoadingTemplate("Setting up Payment...");
+			                commsData.setURLPath("V1/Expense/updatePayment");
+			                commsData.setPostData(postData);
+			                
+			                return new CommsService.communicate(commsData).then(function(response) {
+
+			                	console.log(response.data);
+			                	HomeDataService.getStatus().setStatusCode(response.data.status.code);
+			                	HomeDataService.getStatus().setStatusMessage(response.data.status.message);
+			                	HomeDataService.setExpenseList(response.data.listOfExpenses);
+			                })
+			                .catch(function(response) {
+			                	console.error(response);
+			                	HomeDataService.getStatus().setStatusCode(901);
+			                	HomeDataService.getStatus().setStatusMessage("Reminder Was not Submitted, Please try again");
+			                });
+		                },
+		                
 		                addReminder : function(reminder) {
 
 		                	var postData = {

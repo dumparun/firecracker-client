@@ -3,17 +3,25 @@
 	class="button-clear"> <i class="ion-arrow-left-c"></i>
 Back </ion-nav-back-button> </ion-nav-bar> <ion-content has-bouncing="false"> <mt-alert>
 </mt-alert>
-
 <div class="item item-header item-positive row row-item">
-	<div class="col col-right col-10">Seq</div>
+	<div class="col col-right col-5">Seq</div>
 	<div class="col col-right col-sep col-50">Item</div>
 	<div class="col col-right col-sep col-40">Date</div>
 </div>
 <div ng-repeat="reminder in reminders">
-	<div ng-class="getRowClass(reminder.reminder)"">
-		<div class="col col-left col-10">{{$index+1}}</div>
+	<div ng-class="getRowClass(reminder.reminder, reminder.paid)"">
+		<div class="col col-left col-5">{{$index+1}}</div>
 		<div class="col col-right col-sep col-50">{{reminder.item}}</div>
-		<div class="col col-right col-sep col-40">{{reminder.reminder}}</div>
+		<div class="col col-right col-sep col-30">{{reminder.reminder}}</div>
+		<div class="col col-right col-sep col-15" ng-show=reminder.paid==0>
+			<button class="button button-block button-balanced" style="margin-top: 0px; margin-bottom:0px" 
+				ng-click="paid(reminder.sequence)">Paid</button>
+		</div>
 	</div>
+</div>
+
+<div class="col">
+	<button class="button button-block button-balanced"
+		ng-click="resetReminder()">Reset All Reminders</button>
 </div>
 </ion-content> </ion-view>

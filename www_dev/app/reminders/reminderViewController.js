@@ -18,7 +18,9 @@ angular
 						'$scope',
 						'$state',
 						'HomeDataService',
-						function($scope, $state, HomeDataService) {
+						'ReminderService',
+						function($scope, $state, HomeDataService,
+								ReminderService) {
 
 							$scope.data = {};
 
@@ -35,22 +37,43 @@ angular
 								$scope.alert.type = "error";
 							}
 
-							$scope.getRowClass = function(reminder) {
+							$scope.getRowClass = function(reminder, paid) {
 
+								if(paid != '0'){
+									return "item row row-item allgood";
+								}
 								var rem = new Date(reminder).getDate();
 								var today = new Date().getDate();
 
 								var remains = rem - today;
-								console.log(remains);
+								
 								var cl = 'undercontrol';
 								if (remains == 0 || remains == -1) {
 									cl = 'overshoot';
 								} else if (remains > 0 && remains < 4) {
 									cl = 'nearingLimit';
-								} else if (remains >  0 && remains < 7) {
+								} else if (remains > 0 && remains < 7) {
 									cl = 'halfed';
 								}
 								return "item row row-item " + cl;
+							}
+
+							$scope.resetReminder = function() {
+								ReminderService.resetReminder().then(
+										function() {
+											$state.go('home', {}, {
+												reload : true
+											});
+										});
+							}
+							
+							$scope.paid = function(sequence){
+								ReminderService.paid(sequence).then(
+										function() {
+											$state.go('home', {}, {
+												reload : true
+											});
+										});
 							}
 
 							$scope.reminders = HomeDataService.getExpenseList();
