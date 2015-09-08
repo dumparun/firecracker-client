@@ -1,0 +1,26 @@
+<ion-view view-title="Expense"> <ion-nav-bar
+	class="bar-balanced"> <ion-nav-back-button
+	class="button-clear"> <i class="ion-arrow-left-c"></i>
+Back </ion-nav-back-button> </ion-nav-bar> <ion-content has-bouncing="false"> <mt-alert>
+</mt-alert>
+<div class="item item-header item-positive row row-item">
+	<div class="col col-right col-10">#</div>
+	<div class="col col-right col-sep col-60">Card Name</div>
+	<div class="col col-right col-sep col-30">Amount</div>
+</div>
+<div ng-repeat="(cardName, cardAmount) in cardList">
+	<div
+		ng-class="getRowClass(plannings.plannedAmount, plannings.expenditure)"
+		ng-init="findTotal(plannings.plannedAmount, plannings.expenditure)">
+		<div></div>
+		<div class="col col-left col-10">{{$index+1}}</div>
+		<div class="col col-right col-sep col-60">{{cardName}}</div>
+		<div class="col col-right col-sep col-30">{{cardAmount}}</div>
+	</div>
+</div>
+<div class="item item-footer item-positive row row-item">
+	<div class="col col-left">Total</div>
+	<div class="col col-right"></div>
+	<div class="col col-right ">{{total}}</div>
+</div>
+</ion-content> </ion-view>
