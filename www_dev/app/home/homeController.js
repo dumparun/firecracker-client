@@ -111,13 +111,31 @@ angular.module('homeApp')
 								});
 					}
 
+					$scope.cardStatus = function() {
+						PlanningService.getCardStatusView().then(
+								function() {
+									if (HomeDataService.getStatus()
+											.getStatusCode() != 0) {
+										$state.go($state.current.name, {}, {
+											reload : true
+										});
+									} else {
+										HomeDataService.getStatus()
+												.setStatusCode(999);
+										HomeDataService.getStatus()
+												.setStatusMessage("");
+										$state.go('cardStatus');
+									}
+
+								});
+					}
 
 					$scope.reminderSubmit = function() {
 						HomeDataService.getStatus().setStatusCode(999);
 						HomeDataService.getStatus().setStatusMessage("");
 						$state.go('reminderSubmit');
 					}
-					
+
 					$scope.reminderView = function() {
 						ReminderService.getReminder().then(
 								function() {
@@ -136,5 +154,5 @@ angular.module('homeApp')
 
 								});
 					}
-					
+
 				} ])

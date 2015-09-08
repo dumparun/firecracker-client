@@ -46,9 +46,8 @@ angular
 								var today = new Date().getDate();
 
 								var remains = rem - today;
-								
 								var cl = 'undercontrol';
-								if (remains == 0 || remains == -1) {
+								if (remains <= 0) {
 									cl = 'overshoot';
 								} else if (remains > 0 && remains < 4) {
 									cl = 'nearingLimit';

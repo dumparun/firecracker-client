@@ -42,6 +42,28 @@ angular.module('planApp')
 			                });
 		                },
 		                
+		                getCardStatusView : function() {
+
+		                	var postData = {};
+			                commsData = new CommsDataService;
+			                commsData.setLoadingTemplate("Getting Card Status View...");
+			                commsData.setURLPath("V1/Expense/getCardStatusView");
+			                commsData.setPostData(postData);
+			                
+			                return new CommsService.communicate(commsData).then(function(response) {
+
+			                	console.log(response.data);
+			                	HomeDataService.getStatus().setStatusCode(response.data.status.code);
+			                	HomeDataService.getStatus().setStatusMessage(response.data.status.message);
+			                	HomeDataService.setExpenseList(response.data.listOfExpenses);
+			                })
+			                .catch(function(response) {
+			                	console.error(response);
+			                	HomeDataService.getStatus().setStatusCode(901);
+			                	HomeDataService.getStatus().setStatusMessage("Expense Was not Submitted, Please try again");
+			                });
+		                },
+		                
 		                updatePlan : function(planningList) {
 
 		                	var postData = {

@@ -83,6 +83,12 @@ angular.module('mtureApp')
 						url : '/reminderView',
 						templateUrl : 'app/reminders/reminderView.htm',
 						controller : 'ReminderViewController'
+					})
+					
+					.state('cardStatus', {
+						url : '/cardStatus',
+						templateUrl : 'app/plans/cardStatusView.htm',
+						controller : 'CardStatusViewController'
 					});
 
 					$urlRouterProvider.otherwise('/login');
