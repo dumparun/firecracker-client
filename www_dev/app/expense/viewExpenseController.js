@@ -37,10 +37,20 @@ angular
 								$scope.alert.type = "error";
 							}
 
+							$scope.data.cashTotal = 0;
+							$scope.data.cardTotal = 0;
 							$scope.data.total = 0;
 
-							$scope.findTotal = function(rowAmount) {
-								$scope.data.total = (parseFloat($scope.data.total) + parseFloat(rowAmount)).toFixed(2);
+							$scope.findTotal = function(rowAmount, paymentType) {
+								if (paymentType == '1') {
+									$scope.data.cashTotal = (parseFloat($scope.data.cashTotal) + parseFloat(rowAmount))
+											.toFixed(2);
+								} else {
+									$scope.data.cardTotal = (parseFloat($scope.data.cardTotal) + parseFloat(rowAmount))
+											.toFixed(2);
+								}
+								$scope.data.total = (parseFloat($scope.data.cashTotal)
+										+ parseFloat($scope.data.cardTotal)).toFixed(2);
 							}
 							$scope.data.expenseList = HomeDataService
 									.getExpenseList();

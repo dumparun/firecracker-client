@@ -13,7 +13,7 @@ Back </ion-nav-back-button> </ion-nav-bar> <mt-alert> </mt-alert>
 
 <div ng-repeat="(keylist, list1) in data.expenseList">
 	<div class="item row row-item">{{keylist}}</div>
-	<div class="item row row-item" ng-repeat="row in list1" ng-init="findTotal(row.amount)">
+	<div class="item row row-item" ng-repeat="row in list1" ng-init="findTotal(row.amount, row.paymenttype)">
 		<div class="col col-left  col-5">{{ $index + 1 }}</div>
 		<div class="col col-right col-sep  col-50">{{ row.description }}</div>
 		<firecracker-Category text={{row.category}}></firecracker-Category>
@@ -24,10 +24,10 @@ Back </ion-nav-back-button> </ion-nav-bar> <mt-alert> </mt-alert>
 
 </div>
 <div class="item item-footer item-positive row row-item">
-	<div class="col col-left">Total</div>
-	<div class="col col-right"></div>
-	<div class="col col-right"></div>
-	<div class="col col-right"></div>
+	<div class="col col-left">Cash</div>
+	<div class="col col-right">{{data.cashTotal}}</div>
+	<div class="col col-right">Card</div>
+	<div class="col col-right">{{data.cardTotal}}</div>
 	<div class="col col-right ">{{data.total}}</div>
 </div>
 </ion-content> </ion-view>
