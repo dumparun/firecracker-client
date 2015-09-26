@@ -12,7 +12,8 @@ Back </ion-nav-back-button> </ion-nav-bar> <ion-content has-bouncing="false"> <m
 	<div ng-class="getRowClass(reminder.reminder, reminder.paid)"">
 		<div class="col col-left col-5">{{$index+1}}</div>
 		<div class="col col-right col-sep col-50">{{reminder.item}}</div>
-		<div class="col col-right col-sep col-30">{{reminder.reminder}}</div>
+		<firecracker-Dateforreminder text={{reminder.reminder}}>
+		</firecracker-Dateforreminder>
 		<div class="col col-right col-sep col-15" ng-show=reminder.paid==0>
 			<button class="button button-block button-balanced" style="margin-top: 0px; margin-bottom:0px" 
 				ng-click="paid(reminder.sequence)">Paid</button>

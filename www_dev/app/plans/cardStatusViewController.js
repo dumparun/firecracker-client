@@ -37,24 +37,16 @@ angular
 								$scope.alert.type = "error";
 							}
 
-							$scope.getRowClass = function(plannedAmount,
-									expenditure) {
-								var cl = 'undercontrol';
-								if (parseFloat(expenditure) == 0) {
-									cl = 'undercontrol';
-								} else if (parseFloat(plannedAmount) <= parseFloat(expenditure)) {
-									cl = 'overshoot';
-								} else if (parseFloat(expenditure) >= (parseFloat(plannedAmount) * 0.75)) {
-									cl = 'nearingLimit';
-								} else if (parseFloat(expenditure) >= (parseFloat(plannedAmount) * 0.5)) {
-									cl = 'halfed';
-								}
-								return "item row row-item " + cl;
-							}
-
-							$scope.cardList = HomeDataService
-									.getExpenseList();
-							$scope.total = $scope.cardList.Total;
-							delete $scope.cardList.Total;
+							$scope.currentCardList = HomeDataService
+									.getExpenseList().current;
+							
+							$scope.nextCardList = HomeDataService
+							.getExpenseList().next;
+					
+							$scope.currentTotal = $scope.currentCardList.Total;
+							delete $scope.currentCardList.Total;
+							
+							$scope.nextTotal = $scope.nextCardList.Total;
+							delete $scope.nextCardList.Total;
 
 						} ])

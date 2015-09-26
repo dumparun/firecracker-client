@@ -135,4 +135,38 @@ angular
 									.replaceWith('<div class="col col-right col-sep  col-15"><img src="css/images/'+ paymentType +'.png" width=30px"/></div>');
 						}
 					};
-				} ]);
+				} ])
+				
+				.directive(
+				'firecrackerDateforreminder',
+				[ function(value) {
+					return {
+						restrict : 'AE',
+						replace : true,
+						link : function(scope, elem, attrs) {
+							
+							var rem = attrs["text"];
+							rem = rem.substr(rem.length - 2);
+							
+							var d = new Date();
+							var month = new Array();
+							month[0] = "Jan";
+							month[1] = "Feb";
+							month[2] = "Mar";
+							month[3] = "Apr";
+							month[4] = "May";
+							month[5] = "Jun";
+							month[6] = "Jul";
+							month[7] = "Aug";
+							month[8] = "Sep";
+							month[9] = "Oct";
+							month[10] = "Nov";
+							month[11] = "Dec";
+							var n = month[d.getMonth()]; 
+							
+							elem
+									.replaceWith('<div class="col col-right col-sep col-30">  '+ rem + ' , '+ n + ' </div>');
+						}
+					};
+				} ])
+				;

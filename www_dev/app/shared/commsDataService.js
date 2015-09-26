@@ -15,7 +15,7 @@ angular.module('comms')
 
 		this.defaultCommsConfig = {
 		    loadingTemplate : "Loading ...",
-		    baseURL : "http://dumparun.info/dev/firecracker/index.php/",
+		    baseURL : "http://localhost:8081/firecracker-server/index.php/",
 		    urlPath : "",
 		    method : "POST",
 		    postData: {},
